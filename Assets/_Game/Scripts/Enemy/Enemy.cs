@@ -46,10 +46,7 @@ public class Enemy : Character
         {
             SetDestination(target);
         }
-        else
-        {
-            SetDestination(newStage.position);
-        }
+        
     }
 
 

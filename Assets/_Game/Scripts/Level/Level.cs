@@ -27,11 +27,9 @@ public class Level : MonoBehaviour
             stage.OnInit();
         }
         stages[0].SpawnAllBrick(numberEnemy);
-
         GetListColor();
         GenListPoint();
         GenCharacter();
-
     }
 
     void GetListColor()
