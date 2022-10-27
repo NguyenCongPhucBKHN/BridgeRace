@@ -4,10 +4,10 @@ public class Enemy : Character
 {
     
     public NavMeshAgent agent;
-    public Transform newStage;
 
     public float numberBrick => listBrick.Count;
-    private bool haveBrick;
+   public bool haveBrick;
+   public float numberTarget;
     private IState<Enemy> currentState;
 
    void Start()
@@ -19,8 +19,11 @@ public class Enemy : Character
    }
     private void Update()
     {
+        if(currentStage!= null)
+        {
+            currentState.OnExecute(this);
+        }
         
-        currentState.OnExecute(this);
     }
     public Vector3 GetTargetPostion()
     {
@@ -47,11 +50,21 @@ public class Enemy : Character
 
     public void CollectBrick()
     {
-        Vector3 target = GetTargetPostion();
-        if(haveBrick)
+        numberTarget = Random.Range(5, 10);
+        if(numberBrick<numberTarget)
         {
-            SetDestination(target);
+            Vector3 target = GetTargetPostion();
+            if(haveBrick)
+            {
+                SetDestination(target);
+            }
         }
+        else
+        {
+            ChangeState(new MoveToBridgeState());
+        }
+        
+        
         
     }
 
@@ -60,7 +73,7 @@ public class Enemy : Character
         int randBridge = Random.Range(0, currentStage.listBridge.Count);
         Vector3 nextNewStage = currentStage.listBridge[randBridge].nextNewStage.position;
         SetDestination(nextNewStage);
-        // Vector3.MoveTowards(transform.position, nextNewStage, 1);
+        // CheckStair();
     }
 
     public void ChangeState(IState<Enemy> state) {

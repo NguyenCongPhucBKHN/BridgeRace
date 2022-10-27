@@ -117,3 +117,4 @@ MonoBehaviour:
   go: {fileID: 3836719815466895603}
   colorType: 0
   meshRenderer: {fileID: 3836719815466895612}
+  stage: {fileID: 0}

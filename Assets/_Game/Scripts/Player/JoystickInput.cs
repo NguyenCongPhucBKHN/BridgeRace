@@ -15,5 +15,6 @@ public class JoystickInput : MonoBehaviour
         {
            _rigidbody.transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
         }
+        _rigidbody.AddForce(Vector3.down*10);
     }
 }

@@ -7,20 +7,20 @@ public class CollectState : IState<Enemy>
     private float numberBirck;
     public void OnEnter(Enemy t)
     {
-        numberBirck = Random.Range(3, 6);
         t.CollectBrick();
     }
 
     public void OnExecute(Enemy t)
     {
         Debug.Log("State collection");
-         if(t.numberBrick<numberBirck)
+         if(!t.haveBrick)
         {
-            t.CollectBrick();
+            t.ChangeState(new MoveToBridgeState() );
         }
         else
         {
-            t.ChangeState(new MoveToBridgeState() );
+            t.CollectBrick();
+           
         }
 
     }

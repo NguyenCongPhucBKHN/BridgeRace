@@ -24,7 +24,7 @@ public class BeginState : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         Character character = other.GetComponent<Character>();
-        if(character!= null && !listChar.Contains(character))
+        if(character!= null)
         {
         character.isNewState = false;
     }
