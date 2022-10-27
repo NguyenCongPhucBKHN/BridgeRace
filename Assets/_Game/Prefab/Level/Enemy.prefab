@@ -125,7 +125,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2359406316382165110}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.26061085
   m_Height: 1.0056142
@@ -170,8 +170,11 @@ MonoBehaviour:
   meshRenderer: {fileID: 2359406315650692316}
   brickHolder: {fileID: 1098011665315411552}
   chaBrick: {fileID: 8678880722584026926, guid: faa8837231fe7dc42acaddf4a9a1a656, type: 3}
+  isMove: 1
+  listBrick: []
   currentStage: {fileID: 0}
   agent: {fileID: 1762532430662617568}
+  newStage: {fileID: 0}
 --- !u!195 &1762532430662617568
 NavMeshAgent:
   m_ObjectHideFlags: 0

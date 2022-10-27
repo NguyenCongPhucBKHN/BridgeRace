@@ -11,6 +11,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private float minNumberBrick=5;
     [SerializeField] private float maxNumberBrick=10;
     [SerializeField] private GameObject listBrick;
+    [SerializeField] public List<Bridge> listBridge;
     public int numberColor;
     public List<Brick> bricks = new List<Brick>();
     private List<Vector3> listPoint;

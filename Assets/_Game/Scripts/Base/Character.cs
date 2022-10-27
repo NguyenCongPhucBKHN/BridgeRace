@@ -10,6 +10,7 @@ public class Character : ColorObject
     public bool isMove= true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
     public Stage currentStage; 
+    public bool isNewState= false;
 
     public void AddBirck()
     {

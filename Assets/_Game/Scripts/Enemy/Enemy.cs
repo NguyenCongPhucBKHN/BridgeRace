@@ -1,23 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class Enemy : Character
 {
-    private bool haveBrick;
+    
     public NavMeshAgent agent;
     public Transform newStage;
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
+    public float numberBrick => listBrick.Count;
+    private bool haveBrick;
+    private IState<Enemy> currentState;
+
+   void Start()
+   {
+    if(currentState== null)
+    {
+        ChangeState(new CollectState());
+    }
+   }
     private void Update()
     {
-        CollectBrick();
+        
+        currentState.OnExecute(this);
     }
     public Vector3 GetTargetPostion()
     {
-        // Debug.Log(currentStage);
         if(currentStage!= null)
         {
             for (int i =0; i<currentStage.bricks.Count; i++)
@@ -47,6 +53,28 @@ public class Enemy : Character
             SetDestination(target);
         }
         
+    }
+
+    public void MoveToBrigde()
+    {
+        int randBridge = Random.Range(0, currentStage.listBridge.Count);
+        Vector3 nextNewStage = currentStage.listBridge[randBridge].nextNewStage.position;
+        SetDestination(nextNewStage);
+        // Vector3.MoveTowards(transform.position, nextNewStage, 1);
+    }
+
+    public void ChangeState(IState<Enemy> state) {
+        {
+            if(currentState!= null)
+            {
+                currentState.OnExit(this);
+            }
+            currentState = state;
+            if(currentStage!= null)
+            {
+                currentState.OnEnter(this);
+            }
+        }
     }
 
 
