@@ -9,13 +9,20 @@ public class Enemy : Character
    public bool haveBrick;
    public float numberTarget;
     private IState<Enemy> currentState;
+    private int randBridge;
 
    void Start()
    {
     if(currentState== null)
     {
         ChangeState(new CollectState());
+        
     }
+    if(currentStage!=null)
+    {
+        randBridge = Random.Range(0, currentStage.listBridge.Count);
+    }
+    
    }
     private void Update()
     {
@@ -50,7 +57,7 @@ public class Enemy : Character
 
     public void CollectBrick()
     {
-        numberTarget = Random.Range(5, 10);
+        numberTarget = Random.Range(7, 15);
         if(numberBrick<numberTarget)
         {
             Vector3 target = GetTargetPostion();
@@ -70,10 +77,10 @@ public class Enemy : Character
 
     public void MoveToBrigde()
     {
-        int randBridge = Random.Range(0, currentStage.listBridge.Count);
+       
         Vector3 nextNewStage = currentStage.listBridge[randBridge].nextNewStage.position;
         SetDestination(nextNewStage);
-        // CheckStair();
+        CheckStair();
     }
 
     public void ChangeState(IState<Enemy> state) {

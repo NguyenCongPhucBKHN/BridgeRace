@@ -4,17 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class JoystickInput : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody rigidbody;
     
-    [SerializeField] private FixedJoystick _joystick;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private FixedJoystick joystick;
+    [SerializeField] private float moveSpeed;
 
     private void FixedUpdate() {
-        _rigidbody.velocity = new Vector3(_joystick.Horizontal *_moveSpeed, _rigidbody.velocity.y, _joystick.Vertical*_moveSpeed);
-        if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+        
+        rigidbody.velocity = new Vector3(joystick.Horizontal *moveSpeed, rigidbody.velocity.y, joystick.Vertical*moveSpeed);
+        if(joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
-           _rigidbody.transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
+           rigidbody.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
         }
-        _rigidbody.AddForce(Vector3.down*10);
+        rigidbody.AddForce(Vector3.down*5);
     }
 }

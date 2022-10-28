@@ -8,14 +8,12 @@ public class MoveToBridgeState : IState<Enemy>
     public void OnEnter(Enemy t)
     {
         t.MoveToBrigde();
-        t.CheckStair();
+        // t.CheckStair();
     }
 
     public void OnExecute(Enemy t)
     {
 
-        Debug.Log("t.numberBrick: "+ t.numberBrick);
-        Debug.Log("t.isNewState: "+ t.isNewState);
        if(t.numberBrick==0 || t.isNewState)
        {
         t.ChangeState(new CollectState());
@@ -23,7 +21,7 @@ public class MoveToBridgeState : IState<Enemy>
        else
        {
         t.MoveToBrigde();
-        t.CheckStair();
+        // t.CheckStair();
        }
     }
 

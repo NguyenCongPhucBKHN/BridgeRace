@@ -54,19 +54,16 @@ public class Character : ColorObject
     {
         RaycastHit hit;
         Debug.DrawLine(nextPoint.position, nextPoint.position + Vector3.down * 10f);
-
-        Debug.Log("bool: "+ Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer));
         if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
         {
             Stair stair = hit.collider.GetComponent<Stair>();
-            Debug.Log("stair color: "+ stair.colorType);
             if(listBrick.Count>0 && (stair.colorType != colorType))
             {
                 RemoveBrick();
                 stair.SetColor(colorType);
                 currentStage.SpawnOneBrick(colorType);
             }
-            else
+            if(listBrick.Count==0 && (stair.colorType != colorType))
             {
                 isMove= false;
             }

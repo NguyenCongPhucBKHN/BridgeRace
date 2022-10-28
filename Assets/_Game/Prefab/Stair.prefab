@@ -115,5 +115,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d9002cb16de72d4f9d74288fcd95352, type: 2}
   - {fileID: 11400000, guid: 3da1d1d9ce04a2243bfe7b758257f0d0, type: 2}
   go: {fileID: 7101037884102840945}
-  colorType: 0
+  colorType: 5
   meshRenderer: {fileID: 7101037884102840956}

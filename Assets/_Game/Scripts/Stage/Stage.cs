@@ -8,8 +8,8 @@ public class Stage : MonoBehaviour
     [SerializeField] GameObject ground;
     
 
-    [SerializeField] private float minNumberBrick=5;
-    [SerializeField] private float maxNumberBrick=10;
+    [SerializeField] private float minNumberBrick=10;
+    [SerializeField] private float maxNumberBrick=15;
     [SerializeField] private GameObject listBrick;
     [SerializeField] public List<Bridge> listBridge;
     public int numberColor;
@@ -63,7 +63,6 @@ public class Stage : MonoBehaviour
             brick.stage= this;
             brick.SetColor((EColorType) i);
             bricks.Add(brick);
-            // emptyPoint.Remove(brick.transform.position);
         } 
         emptyPoint.Clear();
     }
@@ -73,7 +72,6 @@ public class Stage : MonoBehaviour
         if(emptyPoint.Count>0)
         {
             int id = Random.Range(0, emptyPoint.Count);
-            Debug.Log("emptyPoint.Count: "+ emptyPoint.Count);
             Vector3 position = emptyPoint[id];
             Brick brick = Instantiate(birckPrefab, position, listBrick.transform.rotation, listBrick.transform);
             brick.stage= this;
@@ -85,7 +83,6 @@ public class Stage : MonoBehaviour
 
     public void SpawByCharacter(Character character)
     {
-        Debug.Log("emptyPoint.Count by character: "+ emptyPoint.Count);
         if(emptyPoint.Count>0)
         {
             numberBirck = Random.Range(minNumberBrick, maxNumberBrick);
