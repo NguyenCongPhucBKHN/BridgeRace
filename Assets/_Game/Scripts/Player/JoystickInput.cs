@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-public class JoystickInput : MonoBehaviour
+public class JoystickInput : Singleton<JoystickInput>
 {
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
     
-    [SerializeField] private FixedJoystick joystick;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public FixedJoystick _joystick;
+    [SerializeField] private float _moveSpeed;
 
-    private void FixedUpdate() {
-        
-        rigidbody.velocity = new Vector3(joystick.Horizontal *moveSpeed, rigidbody.velocity.y, joystick.Vertical*moveSpeed);
-        if(joystick.Horizontal != 0 || joystick.Vertical != 0)
+    
+
+    public void Move()
+    {
+        _rigidbody.velocity = new Vector3(_joystick.Horizontal *_moveSpeed, _rigidbody.velocity.y, _joystick.Vertical*_moveSpeed);
+        // Debug.Log("_joystick.Vertical: "+ _joystick.Vertical);
+        // Debug.Log("_joystick.Horizontal: "+ _joystick.Horizontal);
+        if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-           rigidbody.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
+           transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
         }
-        rigidbody.AddForce(Vector3.down*5);
+        _rigidbody.AddForce(Vector3.down*10f);
     }
 }

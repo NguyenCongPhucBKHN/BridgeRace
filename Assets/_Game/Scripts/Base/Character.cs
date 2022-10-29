@@ -8,13 +8,18 @@ public class Character : ColorObject
     [SerializeField] protected Transform brickHolder;
     [SerializeField] protected ChaBrick chaBrick;
     [SerializeField] private Transform nextPoint;
+    [SerializeField] private LayerMask stairLayer;
+    [SerializeField] private ColBrick ColBrickPrefab;
     public bool isMove= true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
     public Stage currentStage; 
     public bool isNewState= false;
-    // private int stairLayer;
-    [SerializeField] private LayerMask stairLayer;
+    public bool isForward => JoystickInput.Instance._joystick.Vertical > 0;
     
+    
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     
 
     public void AddBirck()
@@ -38,22 +43,56 @@ public class Character : ColorObject
 
     
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("brick"))
+        if(other.GetComponent<Brick>()!=null)
         {   
             Brick gbrick = other.GetComponent<Brick>();
-            if(gbrick.colorType ==colorType)
+            if(gbrick.colorType ==colorType || gbrick.colorType == EColorType.Default)
             {
-
                 AddBirck();
                 gbrick.OnDespawn();
             }
         }
+        if(other.GetComponent<Character>()!=null)
+        {
+            Character character = other.GetComponent<Character>().listBrick.Count > this.listBrick.Count ? this: other.GetComponent<Character>() ;
+            SpawnBrickCollider(character);
+        }
     }
+
+    void SpawnBrickCollider(Character character)
+    {
+        if(character!= null)
+        {
+            for(int i =0; i< character.listBrick.Count; i++)
+            {
+                character.RemoveBrick();
+                Vector3 position = character.transform.position;
+                position.y = currentStage.gameObject.transform.position.y +0.5f;
+                ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
+                colBrick.stage = currentStage;
+                
+                // colBrick.rd.Sleep();
+                // colBrick.collider.isTrigger= true;
+
+
+            }
+        }
+        
+    }
+
+    // void ClearBrick()
+    // {
+    //     for(int i =0; i<listBrick.Count; i++)
+    //     {
+    //         RemoveBrick();
+    //     }
+    //     listBrick.Clear();
+    // }
 
   public bool CheckStair()
     {
+        isMove= true;
         RaycastHit hit;
-        Debug.DrawLine(nextPoint.position, nextPoint.position + Vector3.down * 10f);
         if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
         {
             Stair stair = hit.collider.GetComponent<Stair>();
@@ -63,12 +102,10 @@ public class Character : ColorObject
                 stair.SetColor(colorType);
                 currentStage.SpawnOneBrick(colorType);
             }
-            if(listBrick.Count==0 && (stair.colorType != colorType))
+            if( isForward && (stair.colorType != colorType))
             {
                 isMove= false;
-            }
-
-           
+            }           
         }
         return isMove;
 

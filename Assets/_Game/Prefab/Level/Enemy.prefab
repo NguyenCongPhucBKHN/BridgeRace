@@ -172,13 +172,14 @@ MonoBehaviour:
   brickHolder: {fileID: 1098011665315411552}
   chaBrick: {fileID: 8678880722584026926, guid: faa8837231fe7dc42acaddf4a9a1a656, type: 3}
   nextPoint: {fileID: 5283180928911783240}
+  stairLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  ColBrickPrefab: {fileID: 1663407101191979346, guid: 9e14ec30ef730dd4cb30b57195e5b737, type: 3}
   isMove: 1
   listBrick: []
   currentStage: {fileID: 0}
   isNewState: 0
-  stairLayer:
-    serializedVersion: 2
-    m_Bits: 512
   agent: {fileID: 1762532430662617568}
   haveBrick: 0
   numberTarget: 0

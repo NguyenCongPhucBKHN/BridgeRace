@@ -8,6 +8,7 @@ public enum EColorType
    Blue,
    Green,
    Yellow, 
+   Violet,
    Default,
    None
 }

@@ -12,7 +12,7 @@ public class CollectState : IState<Enemy>
 
     public void OnExecute(Enemy t)
     {
-        Debug.Log("State collection");
+        // Debug.Log("State collection");
          if(!t.haveBrick)
         {
             t.ChangeState(new MoveToBridgeState() );
