@@ -16,7 +16,6 @@ public class BeginState : MonoBehaviour
             character.currentStage = stage;
             stage.numberColor = listChar.Count;
             stage.SpawByCharacter(character);
-            // Debug.Log("NewState: "+ character.colorType);
             character.isNewState = true;
         }
     }

@@ -11,30 +11,14 @@ public class ColBrick : Brick
    private void Start() 
    {
     SetColor(EColorType.Default);
-    rd.AddForce(Vector3.up*10);
+    Vector3[] directions = new Vector3[]{Vector3.right, Vector3.left, Vector3.forward, Vector3.back};
+
+    int random = Random.Range(0, 4);
+    rd.AddForce(Vector3.up*100 + directions[random]*200);
     isHitGround=false;
 
    }
 
-
-    private void OnCollisionEnter(Collision other) {
-        if(other.collider.CompareTag("ground"))
-        {
-            // rd.isKinematic=true;
-            // collider.isTrigger= true;   
-        }
-    }
-
-    // private void   OnTriggerExit(Collider other){
-    //     Quaternion rotation = transform.rotation;
-    //     rotation.z= 0;
-    //     transform.rotation = rotation;
-    // }
-
-    
-    // private void OnTriggerEnter(Collider other) {
-    //     stage.bricks.Add(this);
-    // }
 
 //    private void OnCollisionEnter(Collision other) {
 //     if(other.collider.CompareTag("ground"))

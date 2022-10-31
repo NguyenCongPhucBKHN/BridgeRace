@@ -18,11 +18,6 @@ public class Character : ColorObject
     public bool isForward => JoystickInput.Instance._joystick.Vertical > 0;
     
     
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    
-
     public void AddBirck()
     {
         ChaBrick brick = Instantiate(chaBrick, brickHolder);
@@ -41,8 +36,7 @@ public class Character : ColorObject
         }
        
     }
-
-    
+ 
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<Brick>()!=null)
         {   
@@ -52,7 +46,7 @@ public class Character : ColorObject
             {
                 AddBirck();
                 gbrick.OnDespawn();
-                // currentStage = gbrick.stage;
+
             }
 
             if( gbrick.colorType == EColorType.Default)
@@ -66,44 +60,11 @@ public class Character : ColorObject
             Character character = other.GetComponent<Character>().listBrick.Count > this.listBrick.Count ? this: other.GetComponent<Character>() ;
             if(currentStage!= null)
             {
-                currentStage.SpawnBrickCollider(character);
-                
+                currentStage.SpawnBrickCollider(character);   
             }
             
         }
     }
-
-    void SpawnBrickCollider(Character character)
-    {
-        if(character!= null)
-        {
-            for(int i =0; i< character.listBrick.Count; i++)
-            {
-                character.RemoveBrick();
-                Vector3 position = character.transform.position;
-                position.y = currentStage.gameObject.transform.position.y +5f;
-                position.x = position.x + Random.Range(-0.5f, 0.5f);
-                position.z = position.z + Random.Range(-0.5f, 0.5f);
-                ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
-                colBrick.stage = currentStage;
-                
-                // colBrick.rd.Sleep();
-                // colBrick.collider.isTrigger= true;
-
-
-            }
-        }
-        
-    }
-
-    // void ClearBrick()
-    // {
-    //     for(int i =0; i<listBrick.Count; i++)
-    //     {
-    //         RemoveBrick();
-    //     }
-    //     listBrick.Clear();
-    // }
 
   public bool CheckStair()
     {
@@ -119,7 +80,6 @@ public class Character : ColorObject
             if(listBrick.Count>0 && (stair.colorType != colorType))
             {
                 RemoveBrick();
-                Debug.Log("colorType: "+ colorType);
                 stair.SetColor(colorType);
                 currentStage.SpawnOneBrick(colorType);
             }

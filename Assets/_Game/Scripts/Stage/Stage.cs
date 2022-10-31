@@ -102,14 +102,9 @@ public class Stage : MonoBehaviour
             {
                 character.RemoveBrick();
                 Vector3 position = character.transform.position;
-                position.y = this.gameObject.transform.position.y +5f;
+                position.y = 4f;
                 ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
                 colBrick.stage = this;
-                
-                // colBrick.rd.Sleep();
-                // colBrick.collider.isTrigger= true;
-
-
             }
         }
         

@@ -17,13 +17,8 @@ public class ColorObject : MonoBehaviour
        {
         if(data.eColorType == eColorType)
         {   
-            // this.meshRenderer = GetComponent<MeshRenderer>()==null ? GetComponentInChildren<MeshRenderer>(): GetComponent<MeshRenderer>();
-            
-            
-            // Debug.Log("data.material: " + data.material);
             this.meshRenderer.material = data.material;
             this.colorType = data.eColorType;
-            // Debug.Log("material: " + this.meshRenderer.material);
         }
        } 
     }

@@ -36,7 +36,6 @@ public class Level : MonoBehaviour
     {
         for(int i =0; i< numberEnemy+1; i++)
         {
-            // Debug.Log("color: "+ (EColorType)i);
             listColor.Add((EColorType) i);
         }
     }

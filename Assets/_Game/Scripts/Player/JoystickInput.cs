@@ -14,8 +14,6 @@ public class JoystickInput : Singleton<JoystickInput>
     public void Move()
     {
         _rigidbody.velocity = new Vector3(_joystick.Horizontal *_moveSpeed, _rigidbody.velocity.y, _joystick.Vertical*_moveSpeed);
-        // Debug.Log("_joystick.Vertical: "+ _joystick.Vertical);
-        // Debug.Log("_joystick.Horizontal: "+ _joystick.Horizontal);
         if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
            transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
