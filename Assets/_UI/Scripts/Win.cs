@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class Win : UICanvas
 {
-    public Text score;
+    public Text level;
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void Update()
+    {
+        level.text="Level: "+ Data.Instance.GetLevel().ToString();
+    }
     public void MainMenuButton()
     {
         UIManager.Instance.OpenUI<MianMenu>();

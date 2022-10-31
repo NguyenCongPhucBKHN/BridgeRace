@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GamePlay : UICanvas
 {
+    public Text level;
     // public void WinButton()
     // {
     //     UIManager.Instance.OpenUI<Win>().score.text = Random.Range(100, 200).ToString();
@@ -20,6 +21,11 @@ public class GamePlay : UICanvas
     // {
     //     UIManager.Instance.OpenUI<Setting>();
     // }
+
+    private void Update()
+    {
+        level.text="Level: "+ Data.Instance.GetLevel().ToString();
+    }
 
     public void RePlayButton()
     {

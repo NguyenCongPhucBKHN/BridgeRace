@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class Lose : UICanvas
 {
-    public Text score;
+    public Text level;
+
+    private void Update()
+    {
+        level.text="Level: "+ Data.Instance.GetLevel().ToString();
+    }
 
     public void MainMenuButton()
     {
