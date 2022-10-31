@@ -20,8 +20,8 @@ public class ColBrick : Brick
     private void OnCollisionEnter(Collision other) {
         if(other.collider.CompareTag("ground"))
         {
-            rd.isKinematic=true;
-            collider.isTrigger= true;   
+            // rd.isKinematic=true;
+            // collider.isTrigger= true;   
         }
     }
 
