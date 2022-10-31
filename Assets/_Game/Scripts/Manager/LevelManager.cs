@@ -10,8 +10,6 @@ public class LevelManager : Singleton<LevelManager>
     
     private void Start() {
         Data.Instance.SetLevel(1);
-
-        Debug.Log("level: "+ Data.Instance.GetLevel());
         LoadLevel(Data.Instance.GetLevel());
         
         

@@ -97,8 +97,6 @@ public class Level : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
-        // listEnemy.Clear();
-
         foreach(ChaBrick brick in player.listBrick)
         {
             Destroy(brick.gameObject);
