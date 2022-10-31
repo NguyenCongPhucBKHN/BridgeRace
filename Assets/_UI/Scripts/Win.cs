@@ -18,6 +18,7 @@ public class Win : UICanvas
         UIManager.Instance.OpenUI<MianMenu>();
         GameManagerr.Instance.ChangeState(EGameState.MainMenu);
         LevelManager.Instance.LoadLevel(1);
+        Data.Instance.SetLevel(1);
         Close();
 
     }

@@ -6193,13 +6193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 5500590535402501373}
-  isWin: 0
   enemyPrefab: {fileID: 445591344285596670, guid: f4126a707e5ab7b42bf2f6a1748f5140, type: 3}
   finishPoint: {fileID: 3248048343077343414}
-  numberEnemy: 4
   stages:
   - {fileID: 3081189287295941771}
   - {fileID: 3017850659832847660}
+  isWin: 0
+  numberEnemy: 2
 --- !u!1 &3244579726859406771
 GameObject:
   m_ObjectHideFlags: 0

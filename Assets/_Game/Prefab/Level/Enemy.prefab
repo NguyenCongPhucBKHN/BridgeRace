@@ -178,6 +178,7 @@ MonoBehaviour:
     m_Bits: 512
   ColBrickPrefab: {fileID: 1663407101191979346, guid: 9e14ec30ef730dd4cb30b57195e5b737, type: 3}
   isMove: 1
+  isGround: 1
   listBrick: []
   currentStage: {fileID: 0}
   isNewState: 0

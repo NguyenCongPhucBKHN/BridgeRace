@@ -15,6 +15,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private ColBrick ColBrickPrefab;
     public int numberColor;
     public List<Brick> bricks = new List<Brick>();
+    private List<Brick> listColBrick = new List<Brick>();
     private List<Vector3> listPoint;
     private List<Vector3> emptyPoint;
     private float numberBirck;
@@ -104,6 +105,7 @@ public class Stage : MonoBehaviour
                 Vector3 position = character.transform.position;
                 position.y = 4f;
                 ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
+                listColBrick.Add(colBrick);
                 colBrick.stage = this;
             }
         }
@@ -119,7 +121,26 @@ public class Stage : MonoBehaviour
     public void OnDespawnColBrick(Brick brick)
     {
         bricks.Remove(brick);
+        listColBrick.Remove(brick);
         Destroy(brick.gameObject);
+
     }
+    
+    public void Clear()
+    {
+        foreach(Brick  brick in bricks)
+        {
+            Destroy(brick.gameObject);
+        }
+        foreach(Brick brick in listColBrick)
+        {
+            Destroy(brick);
+        }
+
+
+    }
+
+
+    
 
 }

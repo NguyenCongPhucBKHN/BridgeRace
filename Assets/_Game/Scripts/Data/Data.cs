@@ -8,10 +8,12 @@ public class Data:Singleton<Data>
 
     public int GetLevel()
     {
+        Debug.Log("Level Manager: "+ level);
         return level;
     }
     public void SetLevel(int lv)
     {
+        Debug.Log("Level Manager: "+ level);
         this.level =lv;
     }
 

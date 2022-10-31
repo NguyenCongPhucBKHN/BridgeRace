@@ -5,20 +5,20 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     [SerializeField] GameObject StartPoint;
+    [SerializeField] Enemy enemyPrefab;
+    [SerializeField] private FinishPoint finishPoint;
+    [SerializeField] private Stage[] stages;
     private Player player;
     private Rigidbody rbPlayer;
     public bool isWin;
-    [SerializeField] Enemy enemyPrefab;
     
-    [SerializeField] private FinishPoint finishPoint;
 
     private List<EColorType> listColor = new List<EColorType>();
     private List<Vector3> listPoint = new List<Vector3>();
 
     public int numberEnemy;
     private List<Enemy> listEnemy = new List<Enemy>();
-    [SerializeField]
-    private Stage[] stages;
+    
     void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -84,6 +84,17 @@ public class Level : MonoBehaviour
         finishPoint.currentLevel = this;
     }
 
+    public void Despawn()
+    {
+        listColor.Clear();
+        listPoint.Clear();
+        listEnemy.Clear();
+        foreach(Stage stage in stages)
+        {
+            stage.Clear();
+        }
+
+    }
 
 
 

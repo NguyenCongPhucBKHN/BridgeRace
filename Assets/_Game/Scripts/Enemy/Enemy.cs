@@ -30,7 +30,7 @@ public class Enemy : Character
     {
         if(GameManagerr.Instance.currentState == EGameState.GamePlay)
         {
-            if(currentStage!= null)
+            if(currentState!= null)
             {
                 currentState.OnExecute(this);
             }
@@ -82,7 +82,10 @@ public class Enemy : Character
 
     public void MoveToBrigde()
     {
-       
+        if(currentStage!=null)
+        {
+            randBridge = Random.Range(0, currentStage.listBridge.Count);
+        }
         Vector3 nextNewStage = currentStage.listBridge[randBridge].nextNewStage.position;
         SetDestination(nextNewStage);
         CheckStair();
@@ -109,10 +112,10 @@ public class Enemy : Character
         ChangeState(new CollectState());
         
     }
-    if(currentStage!=null)
-    {
-        randBridge = Random.Range(0, currentStage.listBridge.Count);
-    }
+    // if(currentStage!=null)
+    // {
+    //     randBridge = Random.Range(0, currentStage.listBridge.Count);
+    // }
     }
 
     

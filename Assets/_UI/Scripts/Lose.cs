@@ -13,20 +13,21 @@ public class Lose : UICanvas
         Close();
     }
 
-   public void RePlayButton()
-    {
-        UIManager.Instance.OpenUI<MianMenu>();
-        GameManagerr.Instance.ChangeState(EGameState.MainMenu);
-        LevelManager.Instance.LoadLevel(1);
-        Close();
-
-    }
-
     public void ReLoadLevel()
     {
         UIManager.Instance.OpenUI<MianMenu>();
         GameManagerr.Instance.ChangeState(EGameState.MainMenu);
         LevelManager.Instance.LoadLevel(Data.Instance.GetLevel());
         Close();
+    }
+
+    public void RePlayButton()
+    {
+        UIManager.Instance.OpenUI<MianMenu>();
+        GameManagerr.Instance.ChangeState(EGameState.MainMenu);
+        Data.Instance.SetLevel(1);
+        LevelManager.Instance.LoadLevel(1);
+        Close();
+
     }
 }

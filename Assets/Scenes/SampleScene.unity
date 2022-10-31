@@ -1867,6 +1867,10 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2121051087}
+    - target: {fileID: 2779078844880266134, guid: 9e592dee2ae67684fb1d581bbd252d6a, type: 3}
+      propertyPath: _moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2779078844880266135, guid: 9e592dee2ae67684fb1d581bbd252d6a, type: 3}
       propertyPath: player
       value: 

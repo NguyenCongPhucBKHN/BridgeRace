@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
 
         Debug.Log("level: "+ Data.Instance.GetLevel());
         LoadLevel(Data.Instance.GetLevel());
-        OnInit();
+        // OnInit();
         
     }
     public void LoadLevel(int index)
@@ -25,6 +25,13 @@ public class LevelManager : Singleton<LevelManager>
         }
 
         currentLevel = Instantiate(levels[index-1]);
+        if(currentLevel!= null)
+        {
+            currentLevel.Despawn();
+            currentLevel.OnInit();
+        }
+        
+
     }
 
     
