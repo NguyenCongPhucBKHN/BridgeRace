@@ -165,9 +165,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e333a849fafcf14d8e896473064760b, type: 2}
   - {fileID: 11400000, guid: c5b0b50c1094bbc43b966e8fd12d6830, type: 2}
   - {fileID: 11400000, guid: 7d9002cb16de72d4f9d74288fcd95352, type: 2}
+  - {fileID: 11400000, guid: d2c778ecc050a624b9a269241a147e2f, type: 2}
   - {fileID: 11400000, guid: 3da1d1d9ce04a2243bfe7b758257f0d0, type: 2}
   go: {fileID: 2359406316382165110}
-  colorType: 0
+  colorType: 5
   meshRenderer: {fileID: 2359406315650692316}
   brickHolder: {fileID: 1098011665315411552}
   chaBrick: {fileID: 8678880722584026926, guid: faa8837231fe7dc42acaddf4a9a1a656, type: 3}

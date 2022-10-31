@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8678880722584026922}
   - component: {fileID: 8678880722584026923}
   - component: {fileID: 8678880722584026924}
-  - component: {fileID: 8678880722584026925}
   - component: {fileID: 8678880722584026926}
   m_Layer: 0
   m_Name: ChaBrick
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8678880722584026927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.29, z: 0.13}
+  m_LocalPosition: {x: 0, y: 2.078, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8678880722584026925
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678880722584026927}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8678880722584026926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +99,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e333a849fafcf14d8e896473064760b, type: 2}
   - {fileID: 11400000, guid: c5b0b50c1094bbc43b966e8fd12d6830, type: 2}
   - {fileID: 11400000, guid: 7d9002cb16de72d4f9d74288fcd95352, type: 2}
+  - {fileID: 11400000, guid: d2c778ecc050a624b9a269241a147e2f, type: 2}
   - {fileID: 11400000, guid: 3da1d1d9ce04a2243bfe7b758257f0d0, type: 2}
   go: {fileID: 8678880722584026927}
-  colorType: 0
+  colorType: 5
   meshRenderer: {fileID: 8678880722584026924}

@@ -38,7 +38,7 @@ public class Enemy : Character
         {
             for (int i =0; i<currentStage.bricks.Count; i++)
             {
-                if(currentStage.bricks[i].colorType == colorType)
+                if(currentStage.bricks[i].colorType == colorType ||currentStage.bricks[i].colorType == EColorType.Default )
                 {
                     haveBrick =true;
                     return currentStage.bricks[i].transform.position;

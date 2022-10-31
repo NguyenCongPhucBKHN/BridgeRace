@@ -13,4 +13,9 @@ public class Brick : ColorObject
     {
         stage.OnDespawn(this);
     }
+
+    public void OnDespawnColBrick()
+    {
+        stage.OnDespawnColBrick(this);
+    }
 }

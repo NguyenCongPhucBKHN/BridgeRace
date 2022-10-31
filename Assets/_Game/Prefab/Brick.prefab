@@ -116,6 +116,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2c778ecc050a624b9a269241a147e2f, type: 2}
   - {fileID: 11400000, guid: 3da1d1d9ce04a2243bfe7b758257f0d0, type: 2}
   go: {fileID: 3836719815466895603}
-  colorType: 0
+  colorType: 6
   meshRenderer: {fileID: 3836719815466895612}
   stage: {fileID: 0}

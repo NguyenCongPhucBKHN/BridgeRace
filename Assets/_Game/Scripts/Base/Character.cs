@@ -11,6 +11,7 @@ public class Character : ColorObject
     [SerializeField] private LayerMask stairLayer;
     [SerializeField] private ColBrick ColBrickPrefab;
     public bool isMove= true;
+    public bool isGround = true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
     public Stage currentStage; 
     public bool isNewState= false;
@@ -45,17 +46,30 @@ public class Character : ColorObject
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<Brick>()!=null)
         {   
+            isGround= true;
             Brick gbrick = other.GetComponent<Brick>();
-            if(gbrick.colorType ==colorType || gbrick.colorType == EColorType.Default)
+            if(gbrick.colorType ==colorType )
             {
                 AddBirck();
                 gbrick.OnDespawn();
+                // currentStage = gbrick.stage;
+            }
+
+            if( gbrick.colorType == EColorType.Default)
+            {
+                AddBirck();
+                gbrick.OnDespawnColBrick();
             }
         }
-        if(other.GetComponent<Character>()!=null)
+        if(other.GetComponent<Character>()!=null && isGround )
         {
             Character character = other.GetComponent<Character>().listBrick.Count > this.listBrick.Count ? this: other.GetComponent<Character>() ;
-            SpawnBrickCollider(character);
+            if(currentStage!= null)
+            {
+                currentStage.SpawnBrickCollider(character);
+                
+            }
+            
         }
     }
 
@@ -67,7 +81,9 @@ public class Character : ColorObject
             {
                 character.RemoveBrick();
                 Vector3 position = character.transform.position;
-                position.y = currentStage.gameObject.transform.position.y +0.5f;
+                position.y = currentStage.gameObject.transform.position.y +5f;
+                position.x = position.x + Random.Range(-0.5f, 0.5f);
+                position.z = position.z + Random.Range(-0.5f, 0.5f);
                 ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
                 colBrick.stage = currentStage;
                 
@@ -96,9 +112,14 @@ public class Character : ColorObject
         if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
         {
             Stair stair = hit.collider.GetComponent<Stair>();
+            if(stair!= null)
+            {
+                isGround = false;
+            }
             if(listBrick.Count>0 && (stair.colorType != colorType))
             {
                 RemoveBrick();
+                Debug.Log("colorType: "+ colorType);
                 stair.SetColor(colorType);
                 currentStage.SpawnOneBrick(colorType);
             }

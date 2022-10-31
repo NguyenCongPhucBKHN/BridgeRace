@@ -12,6 +12,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private float maxNumberBrick=15;
     [SerializeField] private GameObject listBrick;
     [SerializeField] public List<Bridge> listBridge;
+    [SerializeField] private ColBrick ColBrickPrefab;
     public int numberColor;
     public List<Brick> bricks = new List<Brick>();
     private List<Vector3> listPoint;
@@ -92,11 +93,38 @@ public class Stage : MonoBehaviour
             }
         }
     }
+
+    public void SpawnBrickCollider(Character character)
+    {
+        if(character!= null)
+        {
+            for(int i =0; i< character.listBrick.Count; i++)
+            {
+                character.RemoveBrick();
+                Vector3 position = character.transform.position;
+                position.y = this.gameObject.transform.position.y +5f;
+                ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
+                colBrick.stage = this;
+                
+                // colBrick.rd.Sleep();
+                // colBrick.collider.isTrigger= true;
+
+
+            }
+        }
+        
+    }
     public void OnDespawn(Brick brick)
     {
         bricks.Remove(brick);
         emptyPoint.Add(brick.transform.position);
         Destroy(brick.gameObject);
     }  
+
+    public void OnDespawnColBrick(Brick brick)
+    {
+        bricks.Remove(brick);
+        Destroy(brick.gameObject);
+    }
 
 }

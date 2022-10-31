@@ -15,7 +15,7 @@ public class ColorObject : MonoBehaviour
     {
        foreach(ColorData data in listColorData)
        {
-        if((int) data.eColorType ==(int) eColorType)
+        if(data.eColorType == eColorType)
         {   
             // this.meshRenderer = GetComponent<MeshRenderer>()==null ? GetComponentInChildren<MeshRenderer>(): GetComponent<MeshRenderer>();
             

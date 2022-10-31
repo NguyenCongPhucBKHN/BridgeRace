@@ -11,31 +11,53 @@ public class ColBrick : Brick
    private void Start() 
    {
     SetColor(EColorType.Default);
-    rd.AddForce(Vector3.up);
+    rd.AddForce(Vector3.up*10);
     isHitGround=false;
 
    }
 
-   private void OnCollisionEnter(Collision other) {
-    if(other.collider.CompareTag("ground"))
-    {
-        if(!isHitGround){
-            StartCoroutine(DisbalePhysic());
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.collider.CompareTag("ground"))
+        {
+            rd.isKinematic=true;
+            collider.isTrigger= true;   
         }
-        isHitGround=true;
     }
+
+    // private void   OnTriggerExit(Collider other){
+    //     Quaternion rotation = transform.rotation;
+    //     rotation.z= 0;
+    //     transform.rotation = rotation;
+    // }
+
     
-   }
+    // private void OnTriggerEnter(Collider other) {
+    //     stage.bricks.Add(this);
+    // }
 
-   IEnumerator DisbalePhysic(){
-    while(true){
-        if(rd.velocity.magnitude<0.01f&&rd.angularVelocity.magnitude<0.001f){
-            break;
-        }
-        yield return null;
-    }
-        collider.isTrigger= true;
-        rd.isKinematic=true;
+//    private void OnCollisionEnter(Collision other) {
+//     if(other.collider.CompareTag("ground"))
+//     {
+//         if(!isHitGround){
+//             StartCoroutine(DisbalePhysic());
+//         }
+//         isHitGround=true;
+//     }
+    
+//    }
 
-   }
+//    IEnumerator DisbalePhysic(){
+//     while(true){
+//         // if(rd.velocity.magnitude<0.01f&&rd.angularVelocity.magnitude<0.001f){
+//         if(rd.velocity.magnitude<0.01f&&rd.angularVelocity.magnitude<0.001f){
+//             break;
+//         }
+//         yield return null;
+//     }
+        
+//         rd.isKinematic=true;
+//         collider.isTrigger= true;
+
+//    }
 }
