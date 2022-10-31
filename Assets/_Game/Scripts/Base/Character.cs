@@ -49,7 +49,7 @@ public class Character : ColorObject
 
             }
 
-            if( gbrick.colorType == EColorType.Default)
+            if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.gameObject.transform.position.y - currentStage.gameObject.transform.position.y)<0.2)
             {
                 AddBirck();
                 gbrick.OnDespawnColBrick();
