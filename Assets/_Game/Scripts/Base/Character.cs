@@ -48,12 +48,17 @@ public class Character : ColorObject
                 gbrick.OnDespawn();
 
             }
-
-            if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.gameObject.transform.position.y - currentStage.gameObject.transform.position.y)<0.2)
+            if(currentStage!=null)
             {
-                AddBirck();
-                gbrick.OnDespawnColBrick();
+                if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.gameObject.transform.position.y - currentStage.gameObject.transform.position.y)<0.2)
+                {
+                    AddBirck();
+                    gbrick.OnDespawnColBrick();
+                }
+
             }
+
+            
         }
         if(other.GetComponent<Character>()!=null && isGround )
         {

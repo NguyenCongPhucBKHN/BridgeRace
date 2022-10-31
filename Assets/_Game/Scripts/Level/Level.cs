@@ -88,11 +88,22 @@ public class Level : MonoBehaviour
     {
         listColor.Clear();
         listPoint.Clear();
-        listEnemy.Clear();
+        
         foreach(Stage stage in stages)
         {
             stage.Clear();
         }
+        foreach(Enemy enemy in listEnemy)
+        {
+            Destroy(enemy.gameObject);
+        }
+        // listEnemy.Clear();
+
+        foreach(ChaBrick brick in player.listBrick)
+        {
+            Destroy(brick.gameObject);
+        }
+        player.listBrick.Clear();
 
     }
 

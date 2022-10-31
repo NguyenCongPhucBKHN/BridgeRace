@@ -13,23 +13,27 @@ public class LevelManager : Singleton<LevelManager>
 
         Debug.Log("level: "+ Data.Instance.GetLevel());
         LoadLevel(Data.Instance.GetLevel());
-        // OnInit();
+        
         
     }
     public void LoadLevel(int index)
     {
-        Data.Instance.SetLevel(index);
-        if(currentLevel != null)
+        
+        if(currentLevel !=levels[index-1] && currentLevel != null)
         {
-            Destroy(currentLevel);
+            currentLevel.Despawn();
+            Destroy(currentLevel.gameObject);
         }
+        
 
         currentLevel = Instantiate(levels[index-1]);
         if(currentLevel!= null)
         {
-            currentLevel.Despawn();
+            
             currentLevel.OnInit();
         }
+
+        Data.Instance.SetLevel(index);
         
 
     }

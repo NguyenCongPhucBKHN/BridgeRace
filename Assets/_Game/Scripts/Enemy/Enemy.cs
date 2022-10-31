@@ -112,10 +112,10 @@ public class Enemy : Character
         ChangeState(new CollectState());
         
     }
-    // if(currentStage!=null)
-    // {
-    //     randBridge = Random.Range(0, currentStage.listBridge.Count);
-    // }
+    if(currentStage!=null)
+    {
+        randBridge = Random.Range(0, currentStage.listBridge.Count);
+    }
     }
 
     

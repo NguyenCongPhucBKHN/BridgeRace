@@ -9442,8 +9442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birckPrefab: {fileID: 3836719815466895614, guid: ecd84889cefba1747bd03896695218ac, type: 3}
   ground: {fileID: 5500590535162861680}
-  minNumberBrick: 10
-  maxNumberBrick: 20
+  minNumberBrick: 5
+  maxNumberBrick: 10
   listBrick: {fileID: 3017850659632989809}
   listBridge:
   - {fileID: 1534454195600744453}

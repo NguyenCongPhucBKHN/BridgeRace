@@ -134,10 +134,12 @@ public class Stage : MonoBehaviour
         }
         foreach(Brick brick in listColBrick)
         {
-            Destroy(brick);
+            Destroy(brick.gameObject);
         }
-
-
+        
+        bricks.Clear();
+        listColBrick.Clear();
+        emptyPoint.Clear();
     }
 
 
