@@ -6,11 +6,13 @@ public class Player : Character
 {
 
     [SerializeField] Rigidbody player;
+
+    private void Awake() {
+        player.isKinematic=true;
+    }
    
     private void Update()
     {
-        
-        
         if(!CheckStair())
         {
             player.velocity= Vector3.zero;
@@ -19,5 +21,10 @@ public class Player : Character
         {
             JoystickInput.Instance.Move();
         }
+    }
+
+    private void OnInit()
+    {
+        
     }
 }

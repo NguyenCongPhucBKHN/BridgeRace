@@ -13,24 +13,29 @@ public class Enemy : Character
 
    void Start()
    {
-    if(currentState== null)
-    {
-        ChangeState(new CollectState());
+    // if(currentState== null)
+    // {
+    //     ChangeState(new CollectState());
         
-    }
-    if(currentStage!=null)
-    {
-        randBridge = Random.Range(0, currentStage.listBridge.Count);
-    }
+    // }
+    // if(currentStage!=null)
+    // {
+    //     randBridge = Random.Range(0, currentStage.listBridge.Count);
+    // }
+
+    // OnStart();
     
    }
     private void Update()
     {
-        if(currentStage!= null)
+        if(GameManagerr.Instance.currentState == EGameState.GamePlay)
         {
-            currentState.OnExecute(this);
+            if(currentStage!= null)
+            {
+                currentState.OnExecute(this);
+            }
         }
-        
+ 
     }
     public Vector3 GetTargetPostion()
     {
@@ -97,7 +102,18 @@ public class Enemy : Character
         }
     }
 
-
+    public void OnStart()
+    {
+        if(currentState== null)
+    {
+        ChangeState(new CollectState());
+        
+    }
+    if(currentStage!=null)
+    {
+        randBridge = Random.Range(0, currentStage.listBridge.Count);
+    }
+    }
 
     
 }

@@ -6,20 +6,25 @@ public class Level : MonoBehaviour
 {
     [SerializeField] GameObject StartPoint;
     private Player player;
+    private Rigidbody rbPlayer;
+    public bool isWin;
     [SerializeField] Enemy enemyPrefab;
     
-    public GameObject finishPoint;
+    [SerializeField] private FinishPoint finishPoint;
 
     private List<EColorType> listColor = new List<EColorType>();
     private List<Vector3> listPoint = new List<Vector3>();
 
     public int numberEnemy;
+    private List<Enemy> listEnemy = new List<Enemy>();
     [SerializeField]
     private Stage[] stages;
     void Awake()
     {
         player = FindObjectOfType<Player>();
+        rbPlayer = player.gameObject.GetComponent<Rigidbody>();
     }
+
     public void OnInit()
     {
         foreach( Stage stage in stages)
@@ -27,6 +32,7 @@ public class Level : MonoBehaviour
             stage.OnInit();
         }
         stages[0].SpawnAllBrick(numberEnemy);
+        
         GetListColor();
         GenListPoint();
         GenCharacter();
@@ -58,15 +64,25 @@ public class Level : MonoBehaviour
         int index = Random.Range(0, numberEnemy+1);
         player.SetColor(listColor[index]);
         player.transform.position = listPoint[index];
+        rbPlayer.isKinematic=false;
         listColor.RemoveAt(index);
         listPoint.RemoveAt(index);
         for(int i =0; i< listColor.Count; i++)
         {
             Enemy enemy = Instantiate(enemyPrefab, listPoint[i], Quaternion.identity);
+            listEnemy.Add(enemy);
             enemy.SetColor(listColor[i]);
         }
     }
 
+    public void OnStart()
+    {
+        foreach(Enemy enemy in listEnemy)
+        {
+            enemy.OnStart();
+        }
+        finishPoint.currentLevel = this;
+    }
 
 
 
