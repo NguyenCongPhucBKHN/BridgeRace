@@ -19,8 +19,9 @@ public class Data:Singleton<Data>
 
     public int GetNextLevel()
     {
+        level = MathMod(level, LevelManager.Instance.levels.Length);
         level++;
-        level = MathMod(level, LevelManager.Instance.levels.Length+1);
+        
         Debug.Log("Level Manager: "+ level);
         return level;
     }
