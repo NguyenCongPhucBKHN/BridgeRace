@@ -101,6 +101,19 @@ MonoBehaviour:
   go: {fileID: 2779078844880266122}
   colorType: 0
   meshRenderer: {fileID: 2779078845587623712}
+  brickHolder: {fileID: 0}
+  chaBrick: {fileID: 0}
+  nextPoint: {fileID: 0}
+  stairLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  ColBrickPrefab: {fileID: 0}
+  isMove: 1
+  isGround: 1
+  listBrick: []
+  currentStage: {fileID: 0}
+  isNewState: 0
+  player: {fileID: 0}
 --- !u!1 &2779078845587623717
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: da65949cb0b6295429d5a9894298e689, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

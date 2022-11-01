@@ -14,6 +14,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         gameOver = false;
+        
     }
 
     // Update is called once per frame
@@ -30,6 +31,13 @@ public class CameraFollow : MonoBehaviour
         Vector3 pos = transform.position;
         Vector3 targetPos = player.transform.position + offset;
         pos = Vector3.Lerp(pos, targetPos, lerpRate*Time.deltaTime);
+        transform.position = pos;
+    }
+    
+    public void FollowEndGame(Vector3 position)
+    {
+        Vector3 pos = transform.position;
+        Vector3 targetPos = position + offset;
         transform.position = pos;
     }
 }

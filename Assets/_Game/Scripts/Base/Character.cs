@@ -10,10 +10,13 @@ public class Character : ColorObject
     [SerializeField] private Transform nextPoint;
     [SerializeField] private LayerMask stairLayer;
     [SerializeField] private ColBrick ColBrickPrefab;
+    [SerializeField] private Animator anim;
+    private string currentAnimName;
     public bool isMove= true;
     public bool isGround = true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
     public Stage currentStage; 
+
     public bool isNewState= false;
     public bool isForward => JoystickInput.Instance._joystick.Vertical > 0;
     
@@ -36,6 +39,31 @@ public class Character : ColorObject
         }
        
     }
+
+    public bool CheckStair()
+    {
+        isMove= true;
+        RaycastHit hit;
+        if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
+        {
+            Stair stair = hit.collider.GetComponent<Stair>();
+            if(stair!= null)
+            {
+                isGround = false;
+            }
+            if(listBrick.Count>0 && (stair.colorType != colorType))
+            {
+                RemoveBrick();
+                stair.SetColor(colorType);
+                currentStage.SpawnOneBrick(colorType);
+            }
+            if( isForward && (stair.colorType != colorType))
+            {
+                isMove= false;
+            }           
+        }
+        return isMove;
+    }  
  
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<Brick>()!=null)
@@ -71,29 +99,25 @@ public class Character : ColorObject
         }
     }
 
-  public bool CheckStair()
+    public void ClearCharBrick()
     {
-        isMove= true;
-        RaycastHit hit;
-        if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
+        foreach(ChaBrick brick in listBrick)
         {
-            Stair stair = hit.collider.GetComponent<Stair>();
-            if(stair!= null)
+            if(brick != null)
             {
-                isGround = false;
+                Destroy(brick.gameObject);
             }
-            if(listBrick.Count>0 && (stair.colorType != colorType))
-            {
-                RemoveBrick();
-                stair.SetColor(colorType);
-                currentStage.SpawnOneBrick(colorType);
-            }
-            if( isForward && (stair.colorType != colorType))
-            {
-                isMove= false;
-            }           
+            
         }
-        return isMove;
+    }
 
-    }  
+    public void ChangeAnim(string animName)
+    {
+        if(currentAnimName != animName)
+        {
+            anim.ResetTrigger(animName);
+            currentAnimName = animName;
+            anim.SetTrigger(currentAnimName);
+        }
+    }   
 }

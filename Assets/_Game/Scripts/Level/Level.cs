@@ -32,7 +32,6 @@ public class Level : MonoBehaviour
             stage.OnInit();
         }
         stages[0].SpawnAllBrick(numberEnemy);
-        
         GetListColor();
         GenListPoint();
         GenCharacter();
@@ -70,6 +69,7 @@ public class Level : MonoBehaviour
         for(int i =0; i< listColor.Count; i++)
         {
             Enemy enemy = Instantiate(enemyPrefab, listPoint[i], Quaternion.identity);
+            enemy.ChangeAnim("Idle");
             listEnemy.Add(enemy);
             enemy.SetColor(listColor[i]);
         }
@@ -99,7 +99,11 @@ public class Level : MonoBehaviour
         }
         foreach(ChaBrick brick in player.listBrick)
         {
-            Destroy(brick.gameObject);
+            if(brick!= null)
+            {
+                Destroy(brick.gameObject);
+            }
+           
         }
         player.listBrick.Clear();
 

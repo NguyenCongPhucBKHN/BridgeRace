@@ -10,16 +10,23 @@ public class ColorObject : MonoBehaviour
     public EColorType colorType;
     [SerializeField]
     public MeshRenderer meshRenderer;
+    public SkinnedMeshRenderer skinnedMeshRenderer;
 
     public void SetColor(EColorType eColorType)
     {
        foreach(ColorData data in listColorData)
        {
-        if(data.eColorType == eColorType)
+        if(data.eColorType == eColorType &&  this.meshRenderer!= null )
         {   
             this.meshRenderer.material = data.material;
             this.colorType = data.eColorType;
         }
+        if(data.eColorType == eColorType &&  this.skinnedMeshRenderer!= null )
+        {   
+            this.skinnedMeshRenderer.material = data.material;
+            this.colorType = data.eColorType;
+        }
+
        } 
     }
 

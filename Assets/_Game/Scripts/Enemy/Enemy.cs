@@ -11,21 +11,6 @@ public class Enemy : Character
     private IState<Enemy> currentState;
     private int randBridge;
 
-   void Start()
-   {
-    // if(currentState== null)
-    // {
-    //     ChangeState(new CollectState());
-        
-    // }
-    // if(currentStage!=null)
-    // {
-    //     randBridge = Random.Range(0, currentStage.listBridge.Count);
-    // }
-
-    // OnStart();
-    
-   }
     private void Update()
     {
         if(GameManagerr.Instance.currentState == EGameState.GamePlay)
@@ -37,6 +22,21 @@ public class Enemy : Character
         }
  
     }
+
+    public void OnStart()
+    {
+        if(currentState== null)
+        {
+            ChangeState(new CollectState());
+            
+        }
+        if(currentStage!=null)
+        {
+            randBridge = Random.Range(0, currentStage.listBridge.Count);
+        }
+    }
+
+
     public Vector3 GetTargetPostion()
     {
         if(currentStage!= null)
@@ -62,6 +62,7 @@ public class Enemy : Character
 
     public void CollectBrick()
     {
+        ChangeAnim("Run");
         numberTarget = Random.Range(7, 15);
         if(numberBrick<numberTarget)
         {
@@ -82,6 +83,7 @@ public class Enemy : Character
 
     public void MoveToBrigde()
     {
+        ChangeAnim("Run");
         if(currentStage!=null)
         {
             randBridge = Random.Range(0, currentStage.listBridge.Count);
@@ -105,18 +107,7 @@ public class Enemy : Character
         }
     }
 
-    public void OnStart()
-    {
-        if(currentState== null)
-    {
-        ChangeState(new CollectState());
-        
-    }
-    if(currentStage!=null)
-    {
-        randBridge = Random.Range(0, currentStage.listBridge.Count);
-    }
-    }
-
     
+
+
 }
