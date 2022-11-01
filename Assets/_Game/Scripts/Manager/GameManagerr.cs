@@ -22,5 +22,4 @@ public class GameManagerr : Singleton< GameManagerr>
     {
         return currentState == state;
     }
-  
 }

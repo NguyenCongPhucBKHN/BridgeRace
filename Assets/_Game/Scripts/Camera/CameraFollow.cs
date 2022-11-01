@@ -7,20 +7,20 @@ public class CameraFollow : MonoBehaviour
     public GameObject player;
     public Vector3 offset;
     public float lerpRate;
-    bool gameOver;
+    // public bool gameOver;
     
 
     // Start is called before the first frame update
-    void Start()
-    {
-        gameOver = false;
+    // void Start()
+    // {
+    //     gameOver = false;
         
-    }
+    // }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!gameOver)
+        if( !GameManagerr.Instance.IsState(EGameState.Finish)  )
         {
             Follow();
         }
@@ -38,6 +38,6 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 pos = transform.position;
         Vector3 targetPos = position + offset;
-        transform.position = pos;
+        transform.position = targetPos;
     }
 }

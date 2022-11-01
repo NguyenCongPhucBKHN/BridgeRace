@@ -11,6 +11,7 @@ public class Level : MonoBehaviour
     private Player player;
     private Rigidbody rbPlayer;
     public bool isWin;
+    private CameraFollow cam;
     
 
     private List<EColorType> listColor = new List<EColorType>();
@@ -20,11 +21,13 @@ public class Level : MonoBehaviour
     private List<Enemy> listEnemy = new List<Enemy>();
     
     void Awake()
-    {
+    { 
         player = FindObjectOfType<Player>();
         rbPlayer = player.gameObject.GetComponent<Rigidbody>();
+        cam = FindObjectOfType<CameraFollow>();
     }
 
+    //Ham khoi tao cac Object trong 1 level: Stages, GenBrick, OnInit Player
     public void OnInit()
     {
         foreach( Stage stage in stages)
@@ -35,8 +38,33 @@ public class Level : MonoBehaviour
         GetListColor();
         GenListPoint();
         GenCharacter();
+        isWin= false;
     }
 
+    public void OnStart()
+    {
+        foreach(Enemy enemy in listEnemy)
+        {
+            enemy.OnStart();
+        }
+        player.currentLevel = this;
+        finishPoint.currentLevel = this;
+    }
+
+    public void Despawn()
+    {
+        foreach(Stage stage in stages)
+        {
+            stage.OnDespawn();
+        }
+        foreach(Enemy enemy in listEnemy)
+        {
+            Destroy(enemy.gameObject);
+        }
+        player.ClearCharBrick();
+        listColor.Clear();
+        listPoint.Clear();
+    }
     void GetListColor()
     {
         for(int i =0; i< numberEnemy+1; i++)
@@ -44,7 +72,6 @@ public class Level : MonoBehaviour
             listColor.Add((EColorType) i);
         }
     }
-
 
     void GenListPoint()
     {
@@ -63,56 +90,18 @@ public class Level : MonoBehaviour
         int index = Random.Range(0, numberEnemy+1);
         player.SetColor(listColor[index]);
         player.transform.position = listPoint[index];
+        player.OnInit();
         rbPlayer.isKinematic=false;
         listColor.RemoveAt(index);
         listPoint.RemoveAt(index);
         for(int i =0; i< listColor.Count; i++)
         {
             Enemy enemy = Instantiate(enemyPrefab, listPoint[i], Quaternion.identity);
-            enemy.ChangeAnim("Idle");
+            enemy.OnInit();
             listEnemy.Add(enemy);
             enemy.SetColor(listColor[i]);
         }
     }
 
-    public void OnStart()
-    {
-        foreach(Enemy enemy in listEnemy)
-        {
-            enemy.OnStart();
-        }
-        finishPoint.currentLevel = this;
-    }
-
-    public void Despawn()
-    {
-        listColor.Clear();
-        listPoint.Clear();
-        
-        foreach(Stage stage in stages)
-        {
-            stage.Clear();
-        }
-        foreach(Enemy enemy in listEnemy)
-        {
-            Destroy(enemy.gameObject);
-        }
-        foreach(ChaBrick brick in player.listBrick)
-        {
-            if(brick!= null)
-            {
-                Destroy(brick.gameObject);
-            }
-           
-        }
-        player.listBrick.Clear();
-
-    }
-
-
-
-
-
-
-
+    
 }

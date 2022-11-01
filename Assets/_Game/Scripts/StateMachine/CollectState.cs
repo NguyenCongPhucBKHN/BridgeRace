@@ -19,9 +19,7 @@ public class CollectState : IState<Enemy>
         else
         {
             t.CollectBrick();
-           
         }
-
     }
 
     public void OnExit(Enemy t)

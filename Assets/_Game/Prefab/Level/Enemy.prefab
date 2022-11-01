@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2359406316382165110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.924, z: 0.161}
+  m_LocalPosition: {x: 0, y: 1.924, z: 0.127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2985017570477567624}
@@ -184,7 +184,10 @@ MonoBehaviour:
   isGround: 1
   listBrick: []
   currentStage: {fileID: 0}
+  currentLevel: {fileID: 0}
   isNewState: 0
+  minNumberTarget: 4
+  maxNumberTarget: 10
   agent: {fileID: 1762532430662617568}
   haveBrick: 0
   numberTarget: 0
@@ -197,7 +200,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2359406316382165110}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_Speed: 5
   m_Acceleration: 500
   avoidancePriority: 50
@@ -303,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e9730d5e1349db4a93d2dcec58f2213, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.16900001
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e9730d5e1349db4a93d2dcec58f2213, type: 3}
       propertyPath: m_LocalRotation.w

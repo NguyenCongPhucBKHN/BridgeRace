@@ -111,6 +111,23 @@ public class Stage : MonoBehaviour
         }
         
     }
+    
+    public void OnDespawn()
+    {
+        foreach(Brick  brick in bricks)
+        {
+            Destroy(brick.gameObject);
+        }
+        foreach(Brick brick in listColBrick)
+        {
+            Destroy(brick.gameObject);
+        }
+        
+        bricks.Clear();
+        listColBrick.Clear();
+        emptyPoint.Clear();
+    }
+    
     public void OnDespawn(Brick brick)
     {
         bricks.Remove(brick);
@@ -126,21 +143,7 @@ public class Stage : MonoBehaviour
 
     }
     
-    public void Clear()
-    {
-        foreach(Brick  brick in bricks)
-        {
-            Destroy(brick.gameObject);
-        }
-        foreach(Brick brick in listColBrick)
-        {
-            Destroy(brick.gameObject);
-        }
-        
-        bricks.Clear();
-        listColBrick.Clear();
-        emptyPoint.Clear();
-    }
+    
 
 
     

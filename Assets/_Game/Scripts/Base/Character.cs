@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Character : ColorObject
 {
-    // EColorType color;
     [SerializeField] protected Transform brickHolder;
     [SerializeField] protected ChaBrick chaBrick;
     [SerializeField] private Transform nextPoint;
@@ -16,11 +15,44 @@ public class Character : ColorObject
     public bool isGround = true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
     public Stage currentStage; 
+    public Level currentLevel;
 
     public bool isNewState= false;
     public bool isForward => JoystickInput.Instance._joystick.Vertical > 0;
+
+    //Trigger with brick to add brick; with character to remove brick
+    private void OnTriggerEnter(Collider other) {
+        Brick gbrick = other.GetComponent<Brick>();
+        Character character = other.GetComponent<Character>();
+        if(gbrick!=null)
+        {   
+            isGround= true;
+            if(gbrick.colorType ==colorType )
+            {
+                AddBirck();
+                gbrick.OnDespawn();
+            }
+            if(currentStage!=null)
+            {
+                if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.gameObject.transform.position.y - currentStage.gameObject.transform.position.y)<0.2)
+                {
+                    AddBirck();
+                    gbrick.OnDespawnColBrick();
+                }
+
+            } 
+        }
+        if(character!=null && isGround )
+        {
+            Character scharacter = character.listBrick.Count > this.listBrick.Count ? this: character ;
+            if(currentStage!= null)
+            {
+                currentStage.SpawnBrickCollider(scharacter);   
+            }
+        }
+    }
     
-    
+    //Add brick into character
     public void AddBirck()
     {
         ChaBrick brick = Instantiate(chaBrick, brickHolder);
@@ -29,17 +61,22 @@ public class Character : ColorObject
         listBrick.Add(brick);
     }
 
+    //Remove brick from character
     public void RemoveBrick()
     {
         if(listBrick.Count>0)
         {
             ChaBrick brick= listBrick[listBrick.Count-1];
             listBrick.RemoveAt(listBrick.Count-1);
-            Destroy(brick.gameObject);
+            if(brick != null)
+            {
+                Destroy(brick.gameObject);
+            }
+            
         }
-       
     }
 
+    //Check in bridge
     public bool CheckStair()
     {
         isMove= true;
@@ -64,41 +101,10 @@ public class Character : ColorObject
         }
         return isMove;
     }  
- 
-    private void OnTriggerEnter(Collider other) {
-        if(other.GetComponent<Brick>()!=null)
-        {   
-            isGround= true;
-            Brick gbrick = other.GetComponent<Brick>();
-            if(gbrick.colorType ==colorType )
-            {
-                AddBirck();
-                gbrick.OnDespawn();
+    
+    
 
-            }
-            if(currentStage!=null)
-            {
-                if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.gameObject.transform.position.y - currentStage.gameObject.transform.position.y)<0.2)
-                {
-                    AddBirck();
-                    gbrick.OnDespawnColBrick();
-                }
-
-            }
-
-            
-        }
-        if(other.GetComponent<Character>()!=null && isGround )
-        {
-            Character character = other.GetComponent<Character>().listBrick.Count > this.listBrick.Count ? this: other.GetComponent<Character>() ;
-            if(currentStage!= null)
-            {
-                currentStage.SpawnBrickCollider(character);   
-            }
-            
-        }
-    }
-
+    //Clear all brick in character
     public void ClearCharBrick()
     {
         foreach(ChaBrick brick in listBrick)
@@ -111,6 +117,7 @@ public class Character : ColorObject
         }
     }
 
+    //Change Anim
     public void ChangeAnim(string animName)
     {
         if(currentAnimName != animName)

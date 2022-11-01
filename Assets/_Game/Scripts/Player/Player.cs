@@ -8,33 +8,34 @@ public class Player : Character
     [SerializeField] Rigidbody player;
     [SerializeField] Transform tfCenterJoystick;
 
-    private void Awake() {
-        player.isKinematic=true;
-    }
+    private bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.1;
 
-    private void Start() {
+    private void Start() 
+    {
         OnInit();
     }
    
     private void Update()
     {
+        if(currentLevel!= null)
+        {
+            if(!CheckStair() || (!isControl && !GameManagerr.Instance.IsState(EGameState.Finish))) //Len cau gach khong cung mau, (khong di chuyen va game chua finish)
+            {
+                player.velocity= Vector3.zero;
+                ChangeAnim(Const.ANIM_IDLE);
+            }
+            else
+            {
+                JoystickInput.Instance.Move();
+                ChangeAnim(Const.ANIM_RUN);
+            }
+        }
         
-
-        if(!CheckStair() || Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)<0.1 )
-        {
-            player.velocity= Vector3.zero;
-            ChangeAnim("Idle");
-        }
-        else
-        {
-            JoystickInput.Instance.Move();
-            ChangeAnim("Run");
-        }
     }
 
-    private void OnInit()
+    public void OnInit() 
     {
-        ChangeAnim("Idle");
+        ChangeAnim(Const.ANIM_IDLE);
         player.velocity= Vector3.down*100;
     }
 }

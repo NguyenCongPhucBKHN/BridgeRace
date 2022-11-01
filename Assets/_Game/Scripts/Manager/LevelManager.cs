@@ -7,51 +7,20 @@ public class LevelManager : Singleton<LevelManager>
     public Level[] levels;
     private Level currentLevel;
     
-    
-    private void Start() {
+    private void Start() 
+    {
         Data.Instance.SetLevel(1);
         LoadLevel(Data.Instance.GetLevel());
-        
-        
-    }
-    public void LoadLevel(int index)
-    {
-        
-        if(currentLevel !=levels[index-1] && currentLevel != null)
-        {
-            currentLevel.Despawn();
-            Destroy(currentLevel.gameObject);
-        }
-        
-
-        currentLevel = Instantiate(levels[index-1]);
-        if(currentLevel!= null)
-        {
-            
-            currentLevel.OnInit();
-        }
-
-        Data.Instance.SetLevel(index);
-        
-
     }
 
-    
-   public void OnInit()
+    public void OnStart()
    {
-        currentLevel.OnInit();
-   }
-
-   public void OnStart()
-   {
-
         currentLevel.OnStart();
         GameManagerr.Instance.currentState = EGameState.GamePlay;
    }
 
    public void OnFinish()
-   {
-        
+   { 
         GameManagerr.Instance.ChangeState(EGameState.Finish);
         if(currentLevel.isWin)
         {
@@ -60,8 +29,26 @@ public class LevelManager : Singleton<LevelManager>
         else
         {
             UIManager.Instance.OpenUI<Lose>();
-        }
-        
+        }    
    }
+
+    public void LoadLevel(int index)
+    {
+        if(currentLevel !=levels[index-1] && currentLevel != null)
+        {
+            currentLevel.Despawn();
+            Destroy(currentLevel.gameObject);
+        }
+        currentLevel = Instantiate(levels[index-1]);
+        if(currentLevel!= null)
+        {  
+            currentLevel.OnInit();
+        }
+        Data.Instance.SetLevel(index);
+    }
+
+   
+
+   
    
 }
