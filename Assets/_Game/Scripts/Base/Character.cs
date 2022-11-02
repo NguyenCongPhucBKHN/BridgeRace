@@ -23,7 +23,7 @@ public class Character : ColorObject
     //Trigger with brick to add brick; with character to remove brick
     private void OnTriggerEnter(Collider other) {
         Brick gbrick = other.GetComponent<Brick>();
-        Character character = other.GetComponent<Character>();
+        Character character = Cache.GetCharacter(other);
         if(gbrick!=null)
         {   
             isGround= true;

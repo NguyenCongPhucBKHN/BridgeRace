@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    public Transform tf;
     public GameObject player;
     public Vector3 offset;
     public float lerpRate;

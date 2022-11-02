@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Brick : ColorObject
 {
+    public Transform tf;
     public Stage stage;
     public void OnSpawn()
     {
