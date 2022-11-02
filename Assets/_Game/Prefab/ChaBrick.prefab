@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbe6aa2f9a8fa94f88cfd1f128cee4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 7
   listColorData:
   - {fileID: 11400000, guid: 65c54b6546a36374a8f98a8531974f4f, type: 2}
   - {fileID: 11400000, guid: 9e333a849fafcf14d8e896473064760b, type: 2}
@@ -104,3 +105,4 @@ MonoBehaviour:
   go: {fileID: 8678880722584026927}
   colorType: 5
   meshRenderer: {fileID: 8678880722584026924}
+  skinnedMeshRenderer: {fileID: 0}

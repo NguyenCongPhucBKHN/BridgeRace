@@ -37,5 +37,7 @@ public class Player : Character
     {
         ChangeAnim(Const.ANIM_IDLE);
         player.velocity= Vector3.down*100;
+        InitPool();
+        
     }
 }

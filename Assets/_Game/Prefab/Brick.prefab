@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3836719815466895603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0.42}
-  m_LocalScale: {x: 0.04, y: 1, z: 0.04}
+  m_LocalScale: {x: 0.7, y: 0.1, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa095d0d4438b6469496bede6e2974c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 5
   listColorData:
   - {fileID: 11400000, guid: 65c54b6546a36374a8f98a8531974f4f, type: 2}
   - {fileID: 11400000, guid: 9e333a849fafcf14d8e896473064760b, type: 2}
@@ -118,4 +119,5 @@ MonoBehaviour:
   go: {fileID: 3836719815466895603}
   colorType: 6
   meshRenderer: {fileID: 3836719815466895612}
+  skinnedMeshRenderer: {fileID: 0}
   stage: {fileID: 0}

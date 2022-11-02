@@ -30,6 +30,7 @@ public class Level : MonoBehaviour
     //Ham khoi tao cac Object trong 1 level: Stages, GenBrick, OnInit Player
     public void OnInit()
     {
+        this.Despawn();
         foreach( Stage stage in stages)
         {
             stage.OnInit();
@@ -59,7 +60,8 @@ public class Level : MonoBehaviour
         }
         foreach(Enemy enemy in listEnemy)
         {
-            Destroy(enemy.gameObject);
+            enemy.ClearCharBrick();
+            enemy.OnDespawn();
         }
         player.ClearCharBrick();
         listColor.Clear();
@@ -96,7 +98,9 @@ public class Level : MonoBehaviour
         listPoint.RemoveAt(index);
         for(int i =0; i< listColor.Count; i++)
         {
-            Enemy enemy = Instantiate(enemyPrefab, listPoint[i], Quaternion.identity);
+            Enemy enemy = SimplePool.Spawn<Enemy>(PoolType.Enemy, listPoint[i], Quaternion.identity );
+            // Enemy enemy = Instantiate(enemyPrefab, listPoint[i], Quaternion.identity);
+            listEnemy.Add(enemy);
             enemy.OnInit();
             listEnemy.Add(enemy);
             enemy.SetColor(listColor[i]);

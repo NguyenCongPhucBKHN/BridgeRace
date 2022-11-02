@@ -8,9 +8,11 @@ public class Character : ColorObject
     [SerializeField] protected ChaBrick chaBrick;
     [SerializeField] private Transform nextPoint;
     [SerializeField] private LayerMask stairLayer;
-    [SerializeField] private ColBrick ColBrickPrefab;
     [SerializeField] private Animator anim;
     private string currentAnimName;
+    private Dictionary<ChaBrick, bool> charBirckPool = new Dictionary<ChaBrick, bool>();
+    private Queue<ChaBrick> queueCharBirck = new Queue<ChaBrick>();
+    private int numberCharBrickPool = 30;
     public bool isMove= true;
     public bool isGround = true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();
@@ -20,6 +22,8 @@ public class Character : ColorObject
     public bool isNewState= false;
     public bool isForward => JoystickInput.Instance._joystick.Vertical > 0;
 
+
+    
     //Trigger with brick to add brick; with character to remove brick
     private void OnTriggerEnter(Collider other) {
         Brick gbrick = other.GetComponent<Brick>();
@@ -30,7 +34,7 @@ public class Character : ColorObject
             if(gbrick.colorType ==colorType )
             {
                 AddBirck();
-                gbrick.OnDespawn();
+                gbrick.Remove();
             }
             if(currentStage!=null)
             {
@@ -55,7 +59,13 @@ public class Character : ColorObject
     //Add brick into character
     public void AddBirck()
     {
-        ChaBrick brick = Instantiate(chaBrick, brickHolder);
+        // ChaBrick brick= SimplePool.Spawn<ChaBrick>(PoolType.CharBirck);
+        // brick.TF.parent = brickHolder;
+
+        ChaBrick brick =  queueCharBirck.Dequeue();
+        brick.gameObject.SetActive(true);
+
+        // ChaBrick brick = Instantiate(chaBrick, brickHolder);
         brick.SetColor(colorType);
         brick.transform.localPosition = Vector3.up * listBrick.Count *0.1f;
         listBrick.Add(brick);
@@ -70,7 +80,12 @@ public class Character : ColorObject
             listBrick.RemoveAt(listBrick.Count-1);
             if(brick != null)
             {
-                Destroy(brick.gameObject);
+                // brick.OnDespawn();
+                queueCharBirck.Enqueue(brick);
+                brick.gameObject.SetActive(false);
+
+                // Destroy(brick.gameObject);
+
             }
             
         }
@@ -113,8 +128,8 @@ public class Character : ColorObject
             {
                 Destroy(brick.gameObject);
             }
-            
         }
+        listBrick.Clear();
     }
 
     //Change Anim
@@ -127,4 +142,15 @@ public class Character : ColorObject
             anim.SetTrigger(currentAnimName);
         }
     }   
+
+    public void InitPool()
+    {
+        for( int i =0; i< numberCharBrickPool; i++)
+        {
+            ChaBrick brick = Instantiate(chaBrick, brickHolder);
+            queueCharBirck.Enqueue(brick);
+            brick.gameObject.SetActive(false);
+            charBirckPool.Add(brick, false);
+        }
+    }
 }

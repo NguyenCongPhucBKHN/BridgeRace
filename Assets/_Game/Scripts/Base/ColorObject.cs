@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorObject : MonoBehaviour
+public class ColorObject : GameUnit
 {
     [SerializeField] List<ColorData> listColorData;
     [SerializeField] GameObject go;
@@ -12,6 +12,15 @@ public class ColorObject : MonoBehaviour
     public MeshRenderer meshRenderer;
     public SkinnedMeshRenderer skinnedMeshRenderer;
 
+     public override void OnInit()
+    {
+        
+    }
+
+    public override void OnDespawn()
+    {
+        SimplePool.Despawn(this);
+    }
     public void SetColor(EColorType eColorType)
     {
        foreach(ColorData data in listColorData)

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Brick : ColorObject
 {
-    public Transform tf;
+    // public Transform tf;
     public Stage stage;
     public void OnSpawn()
     {
 
     }
-    public void OnDespawn()
+    public void Remove()
     {
+        // base.OnDespawn();
         stage.OnDespawn(this);
     }
 

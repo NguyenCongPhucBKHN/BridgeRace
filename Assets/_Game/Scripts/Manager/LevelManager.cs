@@ -29,12 +29,14 @@ public class LevelManager : Singleton<LevelManager>
         else
         {
             UIManager.Instance.OpenUI<Lose>();
-        }    
+        }  
+        // currentLevel.Despawn();
    }
 
     public void LoadLevel(int index)
     {
-        if(currentLevel !=levels[index-1] && currentLevel != null)
+        
+        if(currentLevel !=levels[index-1] &&  currentLevel != null)
         {
             currentLevel.Despawn();
             Destroy(currentLevel.gameObject);

@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8262b0793b575642bddc966750a2ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 4
   listColorData:
   - {fileID: 11400000, guid: 65c54b6546a36374a8f98a8531974f4f, type: 2}
   - {fileID: 11400000, guid: 9e333a849fafcf14d8e896473064760b, type: 2}

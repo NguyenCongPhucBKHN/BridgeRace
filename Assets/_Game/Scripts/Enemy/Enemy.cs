@@ -32,7 +32,10 @@ public class Enemy : Character
 
     public void OnInit()
     {
+        InitPool();
         ChangeAnim(Const.ANIM_IDLE);
+        agent.speed =5;
+
     }
     public void OnStart()
     {
@@ -52,7 +55,7 @@ public class Enemy : Character
                 if(currentStage.bricks[i].colorType == colorType)
                 {
                     haveBrick =true;
-                    return currentStage.bricks[i].transform.position;
+                    return currentStage.bricks[i].TF.position;
                 }
             }
         }
@@ -63,7 +66,15 @@ public class Enemy : Character
     //Move to target position
     public void SetDestination(Vector3 position)
     {
+        
         agent.SetDestination(position);
+        // position.y = this.TF.position.y;
+        // Debug.Log("Distance > 0.1: "+ (Vector3.Distance(position, this.TF.position)>0.1));
+        // if(Vector3.Distance(position, this.TF.position)>0.1)
+        // {
+        //     agent.SetDestination(position);
+        // }
+        
     }
 
     //Collection brick
