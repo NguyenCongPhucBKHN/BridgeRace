@@ -8,6 +8,8 @@ public class Level : MonoBehaviour
     [SerializeField] Enemy enemyPrefab;
     [SerializeField] private FinishPoint finishPoint;
     [SerializeField] private Stage[] stages;
+    [SerializeField] public Transform TF;
+    [SerializeField] public Transform StartPointTF;
     private Player player;
     private Rigidbody rbPlayer;
     public bool isWin;
@@ -25,6 +27,9 @@ public class Level : MonoBehaviour
         player = FindObjectOfType<Player>();
         rbPlayer = player.gameObject.GetComponent<Rigidbody>();
         cam = FindObjectOfType<CameraFollow>();
+        TF = gameObject.transform;
+        StartPointTF = StartPoint.transform;
+
     }
 
     //Ham khoi tao cac Object trong 1 level: Stages, GenBrick, OnInit Player
@@ -77,12 +82,12 @@ public class Level : MonoBehaviour
 
     void GenListPoint()
     {
-        float wGround = StartPoint.transform.localScale.x;
-        Vector3 position= StartPoint.transform.position;
+        float wGround = StartPointTF.localScale.x;
+        Vector3 position= StartPointTF.position;
         for(int i =0; i< numberEnemy+1; i++)
         {
-            position.x = StartPoint.transform.position.x -wGround/2+ (wGround/numberEnemy)*(i)+2f;
-            position.y = StartPoint.transform.position.y +1.5f;
+            position.x = StartPointTF.position.x -wGround/2+ (wGround/numberEnemy)*(i)+2f;
+            position.y = StartPointTF.position.y +1.5f;
             listPoint.Add(position);
         }
     }
@@ -91,7 +96,7 @@ public class Level : MonoBehaviour
     {
         int index = Random.Range(0, numberEnemy+1);
         player.SetColor(listColor[index]);
-        player.transform.position = listPoint[index];
+        player.TF.position = listPoint[index];
         player.OnInit();
         rbPlayer.isKinematic=false;
         listColor.RemoveAt(index);

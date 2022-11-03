@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform tf;
-    public GameObject player;
+    public Transform TF;
+    public Player player;
     public Vector3 offset;
     public float lerpRate;
     // public bool gameOver;
@@ -17,6 +17,11 @@ public class CameraFollow : MonoBehaviour
     //     gameOver = false;
         
     // }
+    void Awake()
+    {
+        player = FindObjectOfType<Player>();
+        TF= gameObject.transform;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -29,16 +34,16 @@ public class CameraFollow : MonoBehaviour
 
     void Follow()
     {
-        Vector3 pos = transform.position;
-        Vector3 targetPos = player.transform.position + offset;
+        Vector3 pos = TF.position;
+        Vector3 targetPos = player.TF.position + offset;
         pos = Vector3.Lerp(pos, targetPos, lerpRate*Time.deltaTime);
-        transform.position = pos;
+        TF.position = pos;
     }
     
     public void FollowEndGame(Vector3 position)
     {
-        Vector3 pos = transform.position;
+        Vector3 pos = TF.position;
         Vector3 targetPos = position + offset;
-        transform.position = targetPos;
+        TF.position = targetPos;
     }
 }

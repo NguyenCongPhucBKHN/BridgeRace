@@ -6,6 +6,7 @@ public class Stage : MonoBehaviour
 {
     [SerializeField] private Brick birckPrefab;
     [SerializeField] GameObject ground;
+    [SerializeField] public Transform TF;
     
 
     [SerializeField] private float minNumberBrick=10;
@@ -13,6 +14,8 @@ public class Stage : MonoBehaviour
     [SerializeField] private GameObject listBrick;
     [SerializeField] public List<Bridge> listBridge;
     [SerializeField] private Brick ColBrickPrefab;
+    [SerializeField] public Transform groundTF;
+    [SerializeField] public Transform listBrickTF;
     public int numberColor;
     public List<Brick> bricks = new List<Brick>();
     private List<Brick> listColBrick = new List<Brick>();
@@ -25,10 +28,13 @@ public class Stage : MonoBehaviour
 
     void Awake()
    {
-        wGround = ground.transform.localScale.x;
-        hGround = ground.transform.localScale.z;
+        groundTF = ground.transform;
+        wGround = groundTF.localScale.x;
+        hGround = groundTF.localScale.z;
         listPoint = new List<Vector3>();
         emptyPoint = new List<Vector3>();
+        TF = gameObject.transform;
+        listBrickTF = listBrick.transform;
    }
     public void OnInit()
     {
@@ -45,9 +51,9 @@ public class Stage : MonoBehaviour
         {
             for (int j =0; j<numberBirck -1; j++)
             {
-                position.x = ground.transform.position.x -wGround/2+ (wGround/numberBirck)*(i+1);
-                position.z = ground.transform.position.z -hGround/2 + (hGround/numberBirck)*(j+1);
-                position.y = listBrick.transform.position.y;
+                position.x = groundTF.position.x -wGround/2+ (wGround/numberBirck)*(i+1);
+                position.z = groundTF.position.z -hGround/2 + (hGround/numberBirck)*(j+1);
+                position.y = listBrickTF.position.y;
                 genList.Add(position);
             }
         }
@@ -60,8 +66,7 @@ public class Stage : MonoBehaviour
         foreach(Vector3 position in listPoint)
         {
             int i = Random.Range(0, numberEnemy+1);
-            Brick brick= SimplePool.Spawn<Brick>(PoolType.birckPrefab, position, listBrick.transform.rotation);
-            // Brick brick = Instantiate(birckPrefab, position, listBrick.transform.rotation, listBrick.transform);
+            Brick brick= SimplePool.Spawn<Brick>(PoolType.birckPrefab, position, listBrickTF.rotation);
             brick.stage= this;
             brick.SetColor((EColorType) i);
             bricks.Add(brick);
@@ -75,12 +80,11 @@ public class Stage : MonoBehaviour
         {
             int id = Random.Range(0, emptyPoint.Count);
             Vector3 position = emptyPoint[id];
-            Brick brick= SimplePool.Spawn<Brick>(PoolType.birckPrefab, position, listBrick.transform.rotation);
-            // Brick brick = Instantiate(birckPrefab, position, listBrick.transform.rotation, listBrick.transform);
+            Brick brick= SimplePool.Spawn<Brick>(PoolType.birckPrefab, position, listBrickTF.rotation);
             brick.stage= this;
             brick.SetColor(eColorType);
             bricks.Add(brick);
-            emptyPoint.Remove(brick.transform.position);
+            emptyPoint.Remove(brick.TF.position);
         }
     }
 
@@ -104,7 +108,7 @@ public class Stage : MonoBehaviour
             {
                 character.RemoveBrick();
                 Vector3 position = character.TF.position;
-                position.y = transform.position.y + 1f;
+                position.y = TF.position.y + 1f;
                 ColBrick colBrick = SimplePool.Spawn<ColBrick>(PoolType.ColBrick, position, Quaternion.identity);
                 // ColBrick colBrick = Instantiate(ColBrickPrefab, position, Quaternion.identity);
                 listColBrick.Add(colBrick);
@@ -135,7 +139,7 @@ public class Stage : MonoBehaviour
     public void OnDespawn(Brick brick)
     {
         bricks.Remove(brick);
-        emptyPoint.Add(brick.transform.position);
+        emptyPoint.Add(brick.TF.position);
         brick.OnDespawn();
 
         // Destroy(brick.gameObject);

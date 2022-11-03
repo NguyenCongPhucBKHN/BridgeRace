@@ -38,7 +38,7 @@ public class Character : ColorObject
             }
             if(currentStage!=null)
             {
-                if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.TF.position.y - currentStage.gameObject.transform.position.y)<0.2)
+                if( gbrick.colorType == EColorType.Default && Mathf.Abs(gbrick.TF.position.y - currentStage.TF.position.y)<0.2)
                 {
                     AddBirck();
                     gbrick.OnDespawnColBrick();
@@ -66,7 +66,7 @@ public class Character : ColorObject
         brick.gameObject.SetActive(true);
 
         brick.SetColor(colorType);
-        brick.transform.localPosition = Vector3.up * listBrick.Count *0.1f;
+        brick.TF.localPosition = Vector3.up * listBrick.Count *0.1f;
         listBrick.Add(brick);
     }
 

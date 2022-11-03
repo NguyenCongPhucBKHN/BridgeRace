@@ -6,9 +6,15 @@ using UnityEngine;
 
 public class FinishPoint : MonoBehaviour
 {
+    [SerializeField] public Transform TF;
     public Level currentLevel;
 
     public CameraFollow cam;
+    void Awake()
+    {
+        TF= gameObject.transform;
+    }
+
     void Start()
     {
         cam= FindObjectOfType<CameraFollow>();
@@ -18,7 +24,7 @@ public class FinishPoint : MonoBehaviour
     {
         if(currentLevel!=null)
         {
-            cam.FollowEndGame(transform.position);
+            cam.FollowEndGame(TF.position);
             Character character = other.GetComponent<Character>();
             if(character != null)
             {
