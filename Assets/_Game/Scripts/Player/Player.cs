@@ -6,7 +6,7 @@ public class Player : Character
 {
 
     [SerializeField] Rigidbody player;
-    
+
     private void Start() 
     {
         OnInit();
@@ -19,12 +19,16 @@ public class Player : Character
             if(!CheckStair() || (!JoystickInput.Instance.isControl && !GameManagerr.Instance.IsState(EGameState.Finish))) //Len cau gach khong cung mau, (khong di chuyen va game chua finish)
             {
                 player.velocity= Vector3.zero;
-                ChangeAnim(Const.ANIM_IDLE);
+                ChangeAnim(Constant.ANIM_IDLE);
+            }
+            else if(GameManagerr.Instance.IsState(EGameState.Finish))
+            {
+                ChangeAnim(Constant.ANIM_WIN);
             }
             else
             {
                 JoystickInput.Instance.Move();
-                ChangeAnim(Const.ANIM_RUN);
+                ChangeAnim(Constant.ANIM_RUN);
             }
         }
         
@@ -32,7 +36,7 @@ public class Player : Character
 
     public void OnInit() 
     {
-        ChangeAnim(Const.ANIM_IDLE);
+        ChangeAnim(Constant.ANIM_IDLE);
         player.velocity= Vector3.down*100;
         InitPool();
         

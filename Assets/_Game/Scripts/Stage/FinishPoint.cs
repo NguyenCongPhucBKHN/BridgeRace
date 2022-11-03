@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,11 +23,23 @@ public class FinishPoint : MonoBehaviour
             if(character != null)
             {
                 character.ClearCharBrick();
-                character.ChangeAnim(Const.ANIM_WIN);
-                currentLevel.isWin = true;
+                character.ChangeAnim(Constant.ANIM_WIN);
+                Type playerType = (new Player()).GetType();
+                Type characterType = character.GetType();
+                if(characterType.IsAssignableFrom(playerType))
+                {
+                    currentLevel.isWin = true;
+  
+                }
+                else
+                {
+                    currentLevel.isWin = false;
+                }
+                
                 LevelManager.Instance.OnFinish();
             }
         }
+       
     }
 
     

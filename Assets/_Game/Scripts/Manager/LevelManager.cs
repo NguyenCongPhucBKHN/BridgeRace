@@ -21,7 +21,10 @@ public class LevelManager : Singleton<LevelManager>
 
    public void OnFinish()
    { 
+        
+
         GameManagerr.Instance.ChangeState(EGameState.Finish);
+        Debug.Log("currentLevel.isWin: "+ currentLevel.isWin);
         if(currentLevel.isWin)
         {
             UIManager.Instance.OpenUI<Win>();
@@ -30,6 +33,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             UIManager.Instance.OpenUI<Lose>();
         }  
+        
         // currentLevel.Despawn();
    }
 

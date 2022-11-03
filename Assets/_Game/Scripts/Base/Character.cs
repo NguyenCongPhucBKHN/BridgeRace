@@ -65,7 +65,6 @@ public class Character : ColorObject
         ChaBrick brick =  queueCharBirck.Dequeue();
         brick.gameObject.SetActive(true);
 
-        // ChaBrick brick = Instantiate(chaBrick, brickHolder);
         brick.SetColor(colorType);
         brick.transform.localPosition = Vector3.up * listBrick.Count *0.1f;
         listBrick.Add(brick);
@@ -80,11 +79,8 @@ public class Character : ColorObject
             listBrick.RemoveAt(listBrick.Count-1);
             if(brick != null)
             {
-                // brick.OnDespawn();
                 queueCharBirck.Enqueue(brick);
                 brick.gameObject.SetActive(false);
-
-                // Destroy(brick.gameObject);
 
             }
             
@@ -137,7 +133,7 @@ public class Character : ColorObject
     {
         if(currentAnimName != animName)
         {
-            anim.ResetTrigger(animName);
+            anim.ResetTrigger(currentAnimName);
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }

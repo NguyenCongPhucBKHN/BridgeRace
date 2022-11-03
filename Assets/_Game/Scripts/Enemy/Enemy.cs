@@ -11,12 +11,14 @@ public class Enemy : Character
     private IState<Enemy> currentState;
     private int randBridge;
 
-
+    void Start() {
+        OnInit();
+    }
     private void Update()
     {
         if(GameManagerr.Instance.IsState(EGameState.GamePlay))
         {
-            ChangeAnim(Const.ANIM_RUN);
+            ChangeAnim(Constant.ANIM_RUN);
             if(currentState!= null)
             {
                 currentState.OnExecute(this);
@@ -32,8 +34,9 @@ public class Enemy : Character
 
     public void OnInit()
     {
+        ChangeAnim(Constant.ANIM_IDLE);
         InitPool();
-        ChangeAnim(Const.ANIM_IDLE);
+
         agent.speed =5;
 
     }
@@ -41,8 +44,11 @@ public class Enemy : Character
     {
         if(currentState== null)
         {
+            // ChangeAnim(Constant.ANIM_RUN);
             ChangeState(new CollectState());
+            
         }
+        // ChangeAnim(Constant.ANIM_RUN);
     }
 
     //Get target position
@@ -80,7 +86,7 @@ public class Enemy : Character
     //Collection brick
     public void CollectBrick()
     {
-        // ChangeAnim(Const.ANIM_RUN);
+        // ChangeAnim(Constant.ANIM_RUN);
         numberTarget = Random.Range(minNumberTarget, maxNumberTarget);
         if( numberBrick < numberTarget)
         {
@@ -102,7 +108,7 @@ public class Enemy : Character
 
     // public void MoveToBrigde()
     // {
-    //     ChangeAnim(Const.ANIM_RUN);
+    //     ChangeAnim(Constant.ANIM_RUN);
     //     if(currentStage!=null)
     //     {
     //         randBridge = Random.Range(0, currentStage.listBridge.Count);
@@ -115,7 +121,7 @@ public class Enemy : Character
     //Move to Bridge
     public void MoveToBrigde()
     {
-        // ChangeAnim(Const.ANIM_RUN);
+        // ChangeAnim(Constant.ANIM_RUN);
         if(currentStage!=null && CheckStair())
         {
             randBridge = Random.Range(0, currentStage.listBridge.Count);

@@ -39,7 +39,7 @@ public class Level : MonoBehaviour
         GetListColor();
         GenListPoint();
         GenCharacter();
-        isWin= false;
+        // isWin= false;
     }
 
     public void OnStart()

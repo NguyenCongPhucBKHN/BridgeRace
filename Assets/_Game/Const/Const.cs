@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Const
+public class Constant
 {
     public static string ANIM_IDLE = "Idle";
     public static string ANIM_RUN = "Run";
