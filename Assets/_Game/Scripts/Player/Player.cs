@@ -6,9 +6,9 @@ public class Player : Character
 {
 
     [SerializeField] Rigidbody player;
-    [SerializeField] Transform tfCenterJoystick;
+    // [SerializeField] Transform tfCenterJoystick;
 
-    private bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.1;
+    // private bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.1;
 
     private void Start() 
     {
@@ -19,7 +19,7 @@ public class Player : Character
     {
         if(currentLevel!= null)
         {
-            if(!CheckStair() || (!isControl && !GameManagerr.Instance.IsState(EGameState.Finish))) //Len cau gach khong cung mau, (khong di chuyen va game chua finish)
+            if(!CheckStair() || (!JoystickInput.Instance.isControl && !GameManagerr.Instance.IsState(EGameState.Finish))) //Len cau gach khong cung mau, (khong di chuyen va game chua finish)
             {
                 player.velocity= Vector3.zero;
                 ChangeAnim(Const.ANIM_IDLE);

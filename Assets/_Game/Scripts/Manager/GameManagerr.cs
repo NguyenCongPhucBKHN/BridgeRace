@@ -10,6 +10,9 @@ public class GameManagerr : Singleton< GameManagerr>
     {
         ChangeState(EGameState.MainMenu);
     }
+    void Start() {
+        UIManager.Instance.OpenUI<MianMenu>();
+    }
     public void ChangeState(EGameState state)
     {
         if(currentState!= state)

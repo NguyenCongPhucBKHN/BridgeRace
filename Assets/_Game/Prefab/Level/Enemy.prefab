@@ -179,7 +179,6 @@ MonoBehaviour:
   stairLayer:
     serializedVersion: 2
     m_Bits: 512
-  ColBrickPrefab: {fileID: 1663407101191979346, guid: 9e14ec30ef730dd4cb30b57195e5b737, type: 3}
   anim: {fileID: 3379477455778613631}
   isMove: 1
   isGround: 1
