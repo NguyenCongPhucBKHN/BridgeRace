@@ -6,10 +6,7 @@ public class Player : Character
 {
 
     [SerializeField] Rigidbody player;
-    // [SerializeField] Transform tfCenterJoystick;
-
-    // private bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.1;
-
+    
     private void Start() 
     {
         OnInit();
