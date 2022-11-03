@@ -12,7 +12,7 @@ public class Character : ColorObject
     private string currentAnimName;
     private Dictionary<ChaBrick, bool> charBirckPool = new Dictionary<ChaBrick, bool>();
     private Queue<ChaBrick> queueCharBirck = new Queue<ChaBrick>();
-    private int numberCharBrickPool = 30;
+    private int numberCharBrickPool = 40;
     public bool isMove= true;
     public bool isGround = true;
     public List<ChaBrick> listBrick = new List<ChaBrick>();

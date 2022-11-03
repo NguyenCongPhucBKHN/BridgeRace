@@ -106,17 +106,7 @@ public class Enemy : Character
         }  
     }
 
-    // public void MoveToBrigde()
-    // {
-    //     ChangeAnim(Constant.ANIM_RUN);
-    //     if(currentStage!=null)
-    //     {
-    //         randBridge = Random.Range(0, currentStage.listBridge.Count);
-    //     }
-    //     Vector3 nextNewStage = currentStage.listBridge[randBridge].nextNewStage.position;
-    //     SetDestination(nextNewStage);
-    //     CheckStair();
-    // }
+
 
     //Move to Bridge
     public void MoveToBrigde()

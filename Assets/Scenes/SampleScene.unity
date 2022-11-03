@@ -220,7 +220,7 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 1814294273}
     prefab: {fileID: 3836719815466895614, guid: ecd84889cefba1747bd03896695218ac, type: 3}
-    amount: 200
+    amount: 400
     collect: 1
     clamp: 0
   - root: {fileID: 185942331}
@@ -230,7 +230,7 @@ MonoBehaviour:
     clamp: 0
   - root: {fileID: 841319569}
     prefab: {fileID: 1663407101191979346, guid: 9e14ec30ef730dd4cb30b57195e5b737, type: 3}
-    amount: 30
+    amount: 40
     collect: 1
     clamp: 0
   Particle: []

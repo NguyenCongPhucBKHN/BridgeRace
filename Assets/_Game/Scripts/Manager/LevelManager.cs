@@ -24,7 +24,6 @@ public class LevelManager : Singleton<LevelManager>
         
 
         GameManagerr.Instance.ChangeState(EGameState.Finish);
-        Debug.Log("currentLevel.isWin: "+ currentLevel.isWin);
         if(currentLevel.isWin)
         {
             UIManager.Instance.OpenUI<Win>();
