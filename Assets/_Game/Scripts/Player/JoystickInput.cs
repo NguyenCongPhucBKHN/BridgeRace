@@ -12,12 +12,17 @@ public class JoystickInput : Singleton<JoystickInput>
     [SerializeField] Transform tfCenterJoystick;
     [SerializeField] Transform playerTF;
 
+    
     public bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.1;
 
    
     private void Awake() {
         _rigidbody = FindObjectOfType<Player>().GetComponent<Rigidbody>();
         playerTF =  _rigidbody.transform;
+        
+        
+
+        
 
     }
     public void Move()

@@ -24,6 +24,7 @@ public class Player : Character
             else if(GameManagerr.Instance.IsState(EGameState.Finish))
             {
                 ChangeAnim(Constant.ANIM_WIN);
+                player.velocity= Vector3.zero;
             }
             else
             {

@@ -15,7 +15,7 @@ public class MianMenu : UICanvas
 
         LevelManager.Instance.OnStart();
         GameManagerr.Instance.ChangeState(EGameState.GamePlay);
-        UIManager.Instance.OpenUI<JoystickUI>();
+        UIManager.Instance.OpenUI<GamePlayUI>();
         Close();
     }
 }

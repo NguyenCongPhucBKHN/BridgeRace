@@ -26,7 +26,7 @@ public class Character : ColorObject
     
     //Trigger with brick to add brick; with character to remove brick
     private void OnTriggerEnter(Collider other) {
-        Brick gbrick = other.GetComponent<Brick>();
+        Brick gbrick = Cache.GetBrick(other);
         Character character = Cache.GetCharacter(other);
         if(gbrick!=null)
         {   
@@ -92,17 +92,17 @@ public class Character : ColorObject
     {
         isMove= true;
         RaycastHit hit;
-        if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 10f, stairLayer))
+        if(Physics.Raycast(nextPoint.position, Vector3.down,out hit, 1000f, stairLayer))
         {
-            Stair stair = hit.collider.GetComponent<Stair>();
+            Stair stair = Cache.GetStair(hit.collider);
             if(stair!= null)
             {
                 isGround = false;
             }
-            if(listBrick.Count>0 && (stair.colorType != colorType))
+            if(listBrick.Count >0 && (stair.colorType != this.colorType))
             {
+                stair.SetColor(this.colorType);
                 RemoveBrick();
-                stair.SetColor(colorType);
                 currentStage.SpawnOneBrick(colorType);
             }
             if( isForward && (stair.colorType != colorType))

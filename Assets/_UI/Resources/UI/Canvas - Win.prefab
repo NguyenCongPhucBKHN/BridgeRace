@@ -423,7 +423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ch\u01A1i level ti\u1EBFp theo"
+  m_Text: Next level
 --- !u!1 &2975191187450035856
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,4 +775,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ch\u01A1i l\u1EA1i t\u1EEB \u0111\u1EA7u"
+  m_Text: Restart

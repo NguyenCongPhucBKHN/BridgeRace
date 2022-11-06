@@ -9,7 +9,7 @@ public class BeginState : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Character character = other.GetComponent<Character>();
+        Character character = Cache.GetCharacter(other);
         if(character!= null && !listChar.Contains(character))
         {
             listChar.Add(character);
@@ -22,7 +22,7 @@ public class BeginState : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Character character = other.GetComponent<Character>();
+        Character character = Cache.GetCharacter(other);
         if(character!= null)
         {
         character.isNewState = false;

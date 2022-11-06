@@ -4,6 +4,7 @@ public class Enemy : Character
 {
     [SerializeField] private float minNumberTarget =4;
     [SerializeField] private float maxNumberTarget = 10;
+    [SerializeField] private float moveSpeed =5;
     public NavMeshAgent agent;
     public float numberBrick => listBrick.Count;
     public bool haveBrick;
@@ -23,11 +24,17 @@ public class Enemy : Character
             {
                 currentState.OnExecute(this);
             }
+            agent.speed = moveSpeed;
         }
-        if(GameManagerr.Instance.IsState(EGameState.Finish))
+        if(GameManagerr.Instance.IsState(EGameState.Finish)  )
+        {
+            agent.speed = 0;
+            
+        }
+        if(GameManagerr.Instance.IsState(EGameState.Pause))
         {
             agent.speed =0;
-            
+            ChangeAnim(Constant.ANIM_IDLE);
         }
 
     }

@@ -211,7 +211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ch\u01A1i l\u1EA1i level v\u1EEBa xong"
+  m_Text: Replay this level
 --- !u!1 &4307086193089169586
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,4 +775,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ch\u01A1i l\u1EA1i t\u1EEB \u0111\u1EA7u"
+  m_Text: Restart
